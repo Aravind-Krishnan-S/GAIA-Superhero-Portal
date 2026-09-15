@@ -4,21 +4,20 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import emailjs from '@emailjs/browser';
 import { Terminal, X, Minus, Square } from "lucide-react";
+import { heroes } from "@/data/heroes";
 
 type Message = { sender: "android" | "user"; text: string };
-type Step = "GREETING" | "NAME" | "AGE" | "EMAIL" | "GRIEVANCE" | "DONE";
+type Step = "CHAT" | "REPORT_NAME" | "REPORT_EMAIL" | "REPORT_GRIEVANCE" | "DONE";
 
 export default function AndroidTerminal() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
-  const [step, setStep] = useState<Step>("GREETING");
+  const [step, setStep] = useState<Step>("CHAT");
   
   const [userData, setUserData] = useState({
     name: "",
-    age: "",
-    location: "",
     email: "",
     grievance: ""
   });
@@ -44,8 +43,7 @@ export default function AndroidTerminal() {
         setTimeout(() => {
           addAndroidMessage("Connection established. I am Android, G.A.I.A.'s chief technical operative.");
           setTimeout(() => {
-            addAndroidMessage("I detect you are accessing this portal for a reason. State your Name.");
-            setStep("NAME");
+            addAndroidMessage("You can query me about our [Operatives], the history of [G.A.I.A.], or type [Report] to file an incident distress beacon. How may I assist you?");
           }, 1000);
         }, 1000);
       }, 500);
@@ -79,77 +77,72 @@ export default function AndroidTerminal() {
   };
 
   const processInput = (val: string) => {
-    switch (step) {
-      case "NAME":
-        setUserData(prev => ({ ...prev, name: val }));
+    const lowerVal = val.toLowerCase();
+
+    if (step === "CHAT") {
+      // Check for report trigger
+      if (lowerVal.includes("report") || lowerVal.includes("distress") || lowerVal.includes("help") || lowerVal.includes("incident") || lowerVal.includes("beacon")) {
         setTimeout(() => {
-          addAndroidMessage(`Acknowledged, ${val}. What is your Age?`);
-          setStep("AGE");
+          addAndroidMessage("Initiating Incident Report Protocol. To begin, please state your Name or Callsign.");
+          setStep("REPORT_NAME");
         }, 500);
-        break;
-      case "AGE":
-        setUserData(prev => ({ ...prev, age: val }));
+        return;
+      }
+
+      // Check for Lore queries
+      if (lowerVal.includes("gaia") || lowerVal.includes("g.a.i.a") || lowerVal.includes("corporate") || lowerVal.includes("charter")) {
         setTimeout(() => {
-          addAndroidMessage(`Logged. Triangulating your coordinates...`);
-          
-          // Use Browser Geolocation API
-          if ("geolocation" in navigator) {
-            navigator.geolocation.getCurrentPosition(
-              (position) => {
-                const lat = position.coords.latitude.toFixed(4);
-                const lng = position.coords.longitude.toFixed(4);
-                const loc = `LAT: ${lat}, LNG: ${lng}`;
-                setUserData(prev => ({ ...prev, location: loc }));
-                setTimeout(() => {
-                  addAndroidMessage(`Coordinates locked: ${loc}.`);
-                  setTimeout(() => {
-                    addAndroidMessage(`We need a secure channel for updates. Enter your Email Address.`);
-                    setStep("EMAIL");
-                  }, 800);
-                }, 500);
-              },
-              (error) => {
-                setUserData(prev => ({ ...prev, location: "UNKNOWN SECTOR (Encrypted)" }));
-                setTimeout(() => {
-                  addAndroidMessage(`Signal encrypted. Location set to UNKNOWN SECTOR.`);
-                  setTimeout(() => {
-                    addAndroidMessage(`We need a secure channel for updates. Enter your Email Address.`);
-                    setStep("EMAIL");
-                  }, 800);
-                }, 500);
-              }
-            );
-          } else {
-            setUserData(prev => ({ ...prev, location: "UNKNOWN SECTOR" }));
-            setTimeout(() => {
-              addAndroidMessage(`Sensor failure. Location set to UNKNOWN SECTOR.`);
-              setTimeout(() => {
-                addAndroidMessage(`We need a secure channel for updates. Enter your Email Address.`);
-                setStep("EMAIL");
-              }, 800);
-            }, 500);
-          }
-        }, 500);
-        break;
-      case "EMAIL":
-        setUserData(prev => ({ ...prev, email: val }));
+          addAndroidMessage("G.A.I.A. (Global Anomaly Investigation Agency) is the sovereign mega-corporation governing Earth. We hold the exclusive planetary charter and defend the planet from rival extraterrestrial conglomerates.");
+        }, 600);
+        return;
+      }
+
+      if (lowerVal.includes("operative") || lowerVal.includes("superhero") || lowerVal.includes("heroes")) {
         setTimeout(() => {
-          addAndroidMessage(`Encrypted link secured.`);
+          addAndroidMessage("We currently deploy an elite vanguard of 4 Operatives: Spectre, Dream Princess, Angel, and myself (Android). You can ask me about any of them specifically.");
+        }, 600);
+        return;
+      }
+
+      // Check for Hero queries
+      for (const hero of heroes) {
+        if (lowerVal.includes(hero.name.toLowerCase()) || (hero.id === "dream-princess" && lowerVal.includes("princess"))) {
           setTimeout(() => {
-            addAndroidMessage(`So... tell me. How can I help you?`);
-            setStep("GRIEVANCE");
-          }, 800);
-        }, 500);
-        break;
-      case "GRIEVANCE":
-        setUserData(prev => ({ ...prev, grievance: val }));
-        setTimeout(() => {
-          addAndroidMessage(`Processing incident report...`);
-          sendEmailPayload({ ...userData, grievance: val });
-        }, 500);
-        break;
-      default:
-        break;
+            addAndroidMessage(`Accessing file: ${hero.name.toUpperCase()}...`);
+            setTimeout(() => {
+              addAndroidMessage(`RANK: ${hero.rank}. THREAT LEVEL: ${hero.threatLevel}.`);
+              addAndroidMessage(hero.backstory);
+            }, 800);
+          }, 400);
+          return;
+        }
+      }
+
+      // Fallback
+      setTimeout(() => {
+        addAndroidMessage("Query unrecognized. You can ask about our [Operatives], the history of [G.A.I.A.], or you can type [Report] to file an incident.");
+      }, 500);
+    } 
+    else if (step === "REPORT_NAME") {
+      setUserData(prev => ({ ...prev, name: val }));
+      setTimeout(() => {
+        addAndroidMessage(`Acknowledged, ${val}. We need a secure channel for updates. Enter your Email Address.`);
+        setStep("REPORT_EMAIL");
+      }, 500);
+    }
+    else if (step === "REPORT_EMAIL") {
+      setUserData(prev => ({ ...prev, email: val }));
+      setTimeout(() => {
+        addAndroidMessage(`Encrypted link secured. Describe the anomaly, hostile entity, or tactical situation in detail.`);
+        setStep("REPORT_GRIEVANCE");
+      }, 500);
+    }
+    else if (step === "REPORT_GRIEVANCE") {
+      setUserData(prev => ({ ...prev, grievance: val }));
+      setTimeout(() => {
+        addAndroidMessage(`Processing incident report...`);
+        sendEmailPayload({ ...userData, grievance: val });
+      }, 500);
     }
   };
 
