@@ -6,6 +6,7 @@ import HeroesGrid from "@/components/HeroesGrid";
 import GaiaAnimation from "@/components/GaiaAnimation";
 import GaiaIntelligence from "@/components/GaiaIntelligence";
 import AnomalyDatabase from "@/components/AnomalyDatabase";
+import CyberpunkCityscape from "@/components/CyberpunkCityscape";
 import { Shield, Globe, Cpu, ChevronDown, Terminal, Database, Lock } from "lucide-react";
 
 export default function Home() {
@@ -125,6 +126,11 @@ export default function Home() {
       {/* Anomaly Database Section */}
       <section className="relative z-20 w-full border-b border-[#111111]">
         <AnomalyDatabase />
+      </section>
+
+      {/* Cyberpunk Cityscape Section */}
+      <section className="relative z-20 w-full border-b border-[#111111]">
+        <CyberpunkCityscape />
       </section>
 
       {/* Roster Grid Section */}
