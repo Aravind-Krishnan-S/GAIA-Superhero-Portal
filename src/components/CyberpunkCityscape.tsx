@@ -131,21 +131,8 @@ function NeonVehicles() {
 
 export default function CyberpunkCityscape() {
   return (
-    <div className="w-full h-[60vh] md:h-[80vh] bg-[#050505] relative overflow-hidden">
+    <div className="w-full h-full bg-[#050505] relative overflow-hidden">
       
-      {/* UI Overlay */}
-      <div className="absolute inset-0 z-10 pointer-events-none flex flex-col items-center justify-center text-center p-8 bg-[linear-gradient(rgba(0,0,0,0.3)_0%,rgba(0,0,0,0.8)_100%)]">
-        <h2 className="text-3xl md:text-5xl font-black uppercase tracking-widest text-[#E50914] mb-2 font-mono drop-shadow-[0_0_15px_rgba(229,9,20,0.8)]">
-          G.A.I.A. GRID
-        </h2>
-        <p className="text-[#888888] font-mono tracking-widest text-sm max-w-xl">
-          MONITORING GLOBAL MEGA-CITIES. ACTIVE THREATS NEUTRALIZED.
-        </p>
-        <div className="mt-8 border border-[#E50914]/30 px-6 py-2 bg-[#E50914]/10 backdrop-blur-sm text-[#E50914] font-mono text-xs tracking-widest animate-pulse">
-          STATUS: OPTIMAL
-        </div>
-      </div>
-
       <Canvas camera={{ position: [0, 15, 30], fov: 60, rotation: [-Math.PI / 8, 0, 0] }}>
         <fog attach="fog" args={["#050505", 10, 80]} />
         <ambientLight intensity={0.2} color="#00ffff" />

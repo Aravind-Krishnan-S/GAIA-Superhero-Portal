@@ -3,7 +3,6 @@
 import { useRef, useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import HeroesGrid from "@/components/HeroesGrid";
-import GaiaAnimation from "@/components/GaiaAnimation";
 import GaiaIntelligence from "@/components/GaiaIntelligence";
 import AnomalyDatabase from "@/components/AnomalyDatabase";
 import CyberpunkCityscape from "@/components/CyberpunkCityscape";
@@ -50,7 +49,7 @@ export default function Home() {
           className="absolute inset-0 z-0 pointer-events-auto"
           style={{ y: backgroundY, opacity }}
         >
-          <GaiaAnimation />
+          <CyberpunkCityscape />
         </motion.div>
 
         {/* Portfolio-like Data Overlay */}
@@ -126,11 +125,6 @@ export default function Home() {
       {/* Anomaly Database Section */}
       <section className="relative z-20 w-full border-b border-[#111111]">
         <AnomalyDatabase />
-      </section>
-
-      {/* Cyberpunk Cityscape Section */}
-      <section className="relative z-20 w-full border-b border-[#111111]">
-        <CyberpunkCityscape />
       </section>
 
       {/* Roster Grid Section */}
