@@ -1,26 +1,129 @@
 @import "tailwindcss";
 
+@theme {
+  --color-gaia-bg: #000000;
+  --color-gaia-surface-1: #1F1F1F;
+  --color-gaia-surface-2: #0A141D;
+  --color-gaia-surface-3: #0D1822;
+  
+  --color-gaia-cyan: #E50914; /* SYSTEM / INFO / ACTIVE */
+  --color-gaia-amber: #FFB000; /* CAUTION / UNKNOWN */
+  --color-gaia-red: #FF3333; /* CRITICAL / DISTRESS */
+  --color-gaia-teal: #00FFAA; /* GAIA / PLANETARY / BIOLOGICAL */
+  
+  --color-gaia-cyan-glow: rgba(229, 9, 20, 0.15);
+  --color-gaia-text: #ffffff;
+  --color-gaia-muted: #8892b0;
+  
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #000000;
+  --foreground: #ffffff;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+  font-family: var(--font-sans);
+}
+
+/* Intelligence Terminal Background */
+.tech-background {
+  background-color: var(--background);
+  background-image: 
+    linear-gradient(rgba(229, 9, 20, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(229, 9, 20, 0.03) 1px, transparent 1px);
+  background-size: 30px 30px;
+  background-position: center center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+}
+
+/* Scanlines Effect */
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0.1)
+  );
+  background-size: 100% 4px;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+/* Cinematic Vignette */
+.vignette {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(
+    circle,
+    rgba(0,0,0,0) 40%,
+    rgba(15,15,15,0.9) 100%
+  );
+  z-index: 40;
+  pointer-events: none;
+}
+
+/* Tactical UI Utilities */
+.intelligence-panel {
+  background: rgba(20, 20, 20, 0.7);
+  border: 1px solid rgba(229, 9, 20, 0.15);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+}
+
+.terminal-border {
+  border: 1px solid rgba(229, 9, 20, 0.2);
+}
+
+.terminal-text {
+  color: var(--color-gaia-cyan);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Distress State */
+.emergency-state {
+  animation: emergencyPulse 2s infinite;
+}
+
+@keyframes emergencyPulse {
+  0% { box-shadow: inset 0 0 0px rgba(255, 51, 51, 0); }
+  50% { box-shadow: inset 0 0 50px rgba(255, 51, 51, 0.2); }
+  100% { box-shadow: inset 0 0 0px rgba(255, 51, 51, 0); }
+}
+
+/* Custom Scrollbar for Intelligence Panels */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-gaia-surface-1);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(229, 9, 20, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(229, 9, 20, 0.5);
 }
