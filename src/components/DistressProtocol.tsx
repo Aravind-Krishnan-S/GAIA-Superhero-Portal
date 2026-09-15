@@ -24,6 +24,7 @@ export default function DistressProtocol({ isOpen, onClose }: DistressProtocolPr
   const [incidentType, setIncidentType] = useState("");
   const [threatLevel, setThreatLevel] = useState("");
   const [description, setDescription] = useState("");
+  const [email, setEmail] = useState("");
   const [contact, setContact] = useState("");
 
   useEffect(() => {
@@ -78,6 +79,7 @@ export default function DistressProtocol({ isOpen, onClose }: DistressProtocolPr
         setIncidentType("");
         setThreatLevel("");
         setDescription("");
+        setEmail("");
         setContact("");
         setBeacon(null);
       }, 4000);
@@ -230,15 +232,28 @@ export default function DistressProtocol({ isOpen, onClose }: DistressProtocolPr
                       />
                     </div>
 
-                    <div className="space-y-2">
-                      <label className="text-[10px] text-[#ff3333] tracking-widest">CONTACT ID (OPTIONAL)</label>
-                      <input 
-                        type="text" 
-                        value={contact}
-                        onChange={(e) => setContact(e.target.value)}
-                        placeholder="CITIZEN ID OR CALLSIGN"
-                        className="w-full bg-[#ff3333]/5 border border-[#ff3333]/30 text-[#ff3333] placeholder-[#ff3333]/30 p-3 text-xs tracking-widest focus:outline-none focus:border-[#ff3333]"
-                      />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <label className="text-[10px] text-[#ff3333] tracking-widest">UPLINK EMAIL (REQUIRED)</label>
+                        <input 
+                          type="email" 
+                          required
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          placeholder="OPERATIVE@GAIA.COM"
+                          className="w-full bg-[#ff3333]/5 border border-[#ff3333]/30 text-[#ff3333] placeholder-[#ff3333]/30 p-3 text-xs tracking-widest focus:outline-none focus:border-[#ff3333]"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-[10px] text-[#ff3333] tracking-widest">CONTACT ID (OPTIONAL)</label>
+                        <input 
+                          type="text" 
+                          value={contact}
+                          onChange={(e) => setContact(e.target.value)}
+                          placeholder="CITIZEN ID OR CALLSIGN"
+                          className="w-full bg-[#ff3333]/5 border border-[#ff3333]/30 text-[#ff3333] placeholder-[#ff3333]/30 p-3 text-xs tracking-widest focus:outline-none focus:border-[#ff3333]"
+                        />
+                      </div>
                     </div>
 
                     <button 
