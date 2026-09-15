@@ -6,33 +6,33 @@ import { Terminal, Database, ShieldAlert, Crosshair } from "lucide-react";
 export default function GaiaIntelligence() {
   const timelineEvents = [
     {
-      year: "ORIGIN",
-      title: "THE SACRIFICE",
-      desc: "The primordial guardian 'GAIA' sacrificed itself to save the Earth from destruction, releasing its powers to the first generation.",
-      status: "CRITICAL"
-    },
-    {
-      year: "GENERATION 1",
-      title: "THE AWAKENING",
-      desc: "Following the sacrifice, the first generation of superhumans received powers from GAIA's residual energy, passing them down through generations.",
-      status: "CONTAINED"
-    },
-    {
-      year: "1998",
-      title: "G.A.I.A. ENTITY EMERGENCE",
-      desc: "The entity that emerged was named G.A.I.A. (Geo-Anomalous Intelligence Avatar). Before its energy dissipated, it transferred a massive cryptographic payload to military satellites.",
-      status: "CRITICAL"
-    },
-    {
-      year: "ESTABLISHMENT",
-      title: "AGENCY FOUNDATION",
-      desc: "The descendants of the first generation established the Global Anomaly Investigation Agency to manage and protect these gifts.",
+      year: "PRE-CONTACT",
+      title: "THE PRIMITIVE ERA",
+      desc: "For millennia, Earth was an isolated, uncontacted backwater planet, oblivious to the vast galactic economy and rival empires.",
       status: "CLASSIFIED"
     },
     {
+      year: "2006",
+      title: "FIRST CONTACT",
+      desc: "Earth was abruptly introduced to the extraterrestrial enterprise network, drawing the attention of aggressive alien conglomerates.",
+      status: "CRITICAL"
+    },
+    {
+      year: "2008",
+      title: "G.A.I.A. FOUNDATION",
+      desc: "A unified human coalition established the Global Anomaly Investigation Agency to prevent planetary liquidation.",
+      status: "SECURED"
+    },
+    {
+      year: "2010",
+      title: "THE CHARTER",
+      desc: "Through sheer resourcefulness, G.A.I.A. secured the exclusive planetary charter, becoming the sovereign corporate ruler of Earth.",
+      status: "AUTHORIZED"
+    },
+    {
       year: "PRESENT",
-      title: "GLOBAL OPERATIONS",
-      desc: "Today, G.A.I.A. organizes and deploys a roster of superpowered operatives to respond to anomalies and distress beacons worldwide.",
+      title: "CORPORATE DEFENSE",
+      desc: "G.A.I.A. deploys a roster of elite superpowered operatives to repel hostile takeovers and maintain Earth's independence.",
       status: "ACTIVE"
     }
   ];
@@ -57,21 +57,21 @@ export default function GaiaIntelligence() {
             </div>
             
             <p className="text-sm text-[#cccccc] leading-relaxed text-justify mb-6">
-              To operate beyond the scope of traditional governments, mitigating existential threats before they emerge. We do not negotiate with anomalies. We contain, study, and neutralize.
+              To operate as Earth's sovereign mega-corporation, maintaining planetary order and defending against hostile takeovers by rival alien conglomerates. We do not negotiate with invaders. We protect the charter.
             </p>
 
             <div className="space-y-4">
               <div className="flex gap-4 items-start">
                 <span className="text-[#E50914] font-bold">01</span>
-                <p className="text-xs text-[#888888]">Identify and recruit individuals possessing anomalous genetic markers.</p>
+                <p className="text-xs text-[#888888]">Identify and recruit super-powered individuals as elite corporate Operatives.</p>
               </div>
               <div className="flex gap-4 items-start">
                 <span className="text-[#E50914] font-bold">02</span>
-                <p className="text-xs text-[#888888]">Develop countermeasures against dimensional rifts and xenobiological threats.</p>
+                <p className="text-xs text-[#888888]">Defend Earth's assets from extraterrestrial corporate incursions and sabotage.</p>
               </div>
               <div className="flex gap-4 items-start">
                 <span className="text-[#E50914] font-bold">03</span>
-                <p className="text-xs text-[#888888]">Maintain absolute global secrecy to prevent mass hysteria.</p>
+                <p className="text-xs text-[#888888]">Reverse-engineer alien technology to ensure Earth remains profitable and independent.</p>
               </div>
             </div>
           </div>
