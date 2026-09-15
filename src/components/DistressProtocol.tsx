@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
 import { AlertTriangle, MapPin, Radio, ShieldAlert } from "lucide-react";
+import emailjs from '@emailjs/browser';
 
 // Dynamically import MapComponent to prevent SSR issues with Leaflet
 const MapComponent = dynamic(() => import("./MapComponent"), { ssr: false });
@@ -60,7 +61,7 @@ export default function DistressProtocol({ isOpen, onClose }: DistressProtocolPr
     }
   }, [isOpen, beacon]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!beacon) {
       alert("PLEASE SELECT LOCATION PARAMETERS.");
@@ -69,8 +70,25 @@ export default function DistressProtocol({ isOpen, onClose }: DistressProtocolPr
 
     setIsSubmitting(true);
     
-    // Simulate API call for cinematic effect
-    setTimeout(() => {
+    try {
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "";
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "";
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "";
+
+      if (serviceId && templateId && publicKey) {
+        const payload = {
+          name: contact || "Anonymous Operative",
+          email: email,
+          title: `[${threatLevel}] ${incidentType} at ${beacon.lat.toFixed(4)}, ${beacon.lng.toFixed(4)}`,
+          description: description,
+          severity: threatLevel
+        };
+        await emailjs.send(serviceId, templateId, payload, publicKey);
+      } else {
+        console.warn("EmailJS credentials missing. Check your .env.local file. Simulating request.");
+        await new Promise(resolve => setTimeout(resolve, 2000));
+      }
+      
       setIsSubmitting(false);
       setIsSuccess(true);
       
@@ -83,7 +101,12 @@ export default function DistressProtocol({ isOpen, onClose }: DistressProtocolPr
         setContact("");
         setBeacon(null);
       }, 4000);
-    }, 2500);
+      
+    } catch (error) {
+      console.error("EmailJS Error in DistressProtocol:", error);
+      setIsSubmitting(false);
+      alert("TRANSMISSION FAILED. INTERFERENCE DETECTED.");
+    }
   };
 
   return (
