@@ -24,11 +24,15 @@ export default function AndroidTerminal() {
   });
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  // Auto-scroll to bottom
+  // Auto-scroll to bottom and maintain input focus
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+    if (step !== "DONE") {
+      inputRef.current?.focus();
+    }
+  }, [messages, step]);
 
   // Proactive greeting on mount
   useEffect(() => {
@@ -67,6 +71,11 @@ export default function AndroidTerminal() {
     setInput("");
 
     processInput(val);
+
+    // Ensure input keeps focus after submission
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 10);
   };
 
   const processInput = (val: string) => {
@@ -242,6 +251,7 @@ export default function AndroidTerminal() {
                   <form onSubmit={handleSubmit} className="flex items-center gap-2">
                     <span className="text-green-500 font-bold animate-pulse">{">"}</span>
                     <input
+                      ref={inputRef}
                       type="text"
                       value={input}
                       onChange={(e) => setInput(e.target.value)}
