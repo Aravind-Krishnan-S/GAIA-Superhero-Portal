@@ -32,7 +32,6 @@ export const heroes: Hero[] = [
     name: "Spectre",
     role: "Omega Clearance / World-Ender Shard",
     image: "/Moonlit_Immortal_of_Misty_Peaks.png",
-    isClassified: true,
     backstory: "Eons ago, the late guardian god of Earth, GAIA, formed a desperate pact with a supreme, immortal entity—a pragmatic and utterly ruthless emperor of the cosmos who seeks only absolute eternity and benefit. To fulfill a transactional vow, this emperor left behind a single \"shard\" of his existence on Earth before departing the universe. Kept in a sealed, top-secret subterranean vault known only to the 0.01% of global authorities, Spectre remains in a perpetual trance. He possesses no memory of his main body’s grand conquests and feels no human emotion. He is the ultimate failsafe, only to be awakened when a cosmic invasion or world-ending anomaly occurs.",
     powerSystem: "Cosmic Severance. Spectre does not manipulate elements; he manipulates the fundamental laws of reality.",
     skills: [
@@ -43,12 +42,12 @@ export const heroes: Hero[] = [
     threatLevel: "Omega (Planetary/Universal)",
     rank: "Unranked (Classified Black Ops)",
     stats: [
-      { subject: "Power", score: 10, fullMark: 10, description: "Unmatched cosmic destruction capabilities.", displayScore: "??" },
-      { subject: "Melee", score: 10, fullMark: 10, description: "Devastating physical force, though rarely needed.", displayScore: "??" },
-      { subject: "Ranged", score: 10, fullMark: 10, description: "Can target reality from across the globe.", displayScore: "??" },
-      { subject: "Intelligence", score: 10, fullMark: 10, description: "Operates on primal, vow-based instinct.", displayScore: "??" },
-      { subject: "Leadership", score: 10, fullMark: 10, description: "Completely solitary and detached.", displayScore: "??" },
-      { subject: "Diplomacy", score: 10, fullMark: 10, description: "Does not negotiate; only executes the vow.", displayScore: "??" }
+      { subject: "Power", score: 10, fullMark: 10, description: "Unmatched cosmic destruction capabilities." },
+      { subject: "Melee", score: 10, fullMark: 10, description: "Devastating physical force, though rarely needed." },
+      { subject: "Ranged", score: 10, fullMark: 10, description: "Can target reality from across the globe." },
+      { subject: "Intelligence", score: 10, fullMark: 10, description: "Operates on primal, vow-based instinct." },
+      { subject: "Leadership", score: 10, fullMark: 10, description: "Completely solitary and detached." },
+      { subject: "Diplomacy", score: 10, fullMark: 10, description: "Does not negotiate; only executes the vow." }
     ]
   },
   {
