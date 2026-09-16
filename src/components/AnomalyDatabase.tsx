@@ -49,16 +49,6 @@ export default function AnomalyDatabase() {
               GLOBAL MONITORING INCIDENTS // ACTIVE THREATS
             </p>
           </div>
-          
-          <div className="flex items-center gap-4 bg-[#1A1A1A] border border-[#E50914]/30 p-2">
-            <Search className="w-4 h-4 text-[#E50914]" />
-            <input 
-              type="text" 
-              placeholder="QUERY DATABASE..." 
-              className="bg-transparent border-none outline-none text-[#E50914] text-xs tracking-widest placeholder:text-[#E50914]/50 w-48"
-              readOnly
-            />
-          </div>
         </div>
 
         {/* Database Table */}

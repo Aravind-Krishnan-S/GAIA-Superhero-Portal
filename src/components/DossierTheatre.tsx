@@ -7,6 +7,7 @@ import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-mo
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from "recharts";
 import { Hero } from "@/data/heroes";
 import { X, Fingerprint, Activity, Terminal } from "lucide-react";
+import SkillsPanel from "./SkillsPanel";
 
 interface DossierTheatreProps {
   hero: Hero | null;
@@ -36,7 +37,7 @@ const ScrambleText = ({ text, delay = 0 }: { text: string, delay?: number }) => 
           setDisplayText(text);
         }
         
-        iteration += 1 / 3; // Controls speed of reveal
+        iteration += 1; // Controls speed of reveal
       }, 30);
     }, delay * 1000);
     
@@ -286,6 +287,15 @@ export default function DossierTheatre({ hero, onClose }: DossierTheatreProps) {
                           </span>
                         </div>
                       ))}
+                    </div>
+
+                    <div className="mt-6 pt-6 border-t border-inherit">
+                      <h3 className="text-[10px] text-[#F8F9FA] tracking-widest mb-4 border-b border-inherit pb-1">
+                        ANOMALOUS_SKILLS_FEED
+                      </h3>
+                      <div className="border border-[#E50914]/30 rounded-sm">
+                        <SkillsPanel hero={hero} className="py-3" />
+                      </div>
                     </div>
                   </motion.div>
                 )}

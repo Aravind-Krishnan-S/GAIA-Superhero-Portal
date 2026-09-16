@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import TopNavigation from "@/components/TopNavigation";
-import ContactGaia from "@/components/ContactGaia";
 import CustomCursor from "@/components/CustomCursor";
 
 const inter = Inter({
@@ -33,7 +32,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="flex-1 mt-16">
           {children}
         </main>
-        <ContactGaia />
       </body>
     </html>
   );

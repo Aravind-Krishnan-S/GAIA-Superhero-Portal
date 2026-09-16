@@ -1,16 +1,17 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence, useMotionValueEvent } from "framer-motion";
 import HeroesGrid from "@/components/HeroesGrid";
 import StarWarsCrawl from "@/components/StarWarsCrawl";
-import AnomalyDatabase from "@/components/AnomalyDatabase";
 import CyberpunkCityscape from "@/components/CyberpunkCityscape";
 import BootSequence from "@/components/BootSequence";
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
   const [isBooted, setIsBooted] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
   
   useEffect(() => {
     // If already booted in session, skip animation
@@ -18,6 +19,24 @@ export default function Home() {
       setIsBooted(true);
     }
   }, []);
+
+  useEffect(() => {
+    const handleToggleAudio = () => {
+      if (audioRef.current) {
+        if (audioRef.current.paused || isMuted) {
+          audioRef.current.play().catch(e => console.log("Audio play blocked", e));
+          setIsMuted(false);
+          window.dispatchEvent(new CustomEvent("audio-state-change", { detail: { muted: false } }));
+        } else {
+          audioRef.current.pause();
+          setIsMuted(true);
+          window.dispatchEvent(new CustomEvent("audio-state-change", { detail: { muted: true } }));
+        }
+      }
+    };
+    window.addEventListener("toggle-global-audio", handleToggleAudio);
+    return () => window.removeEventListener("toggle-global-audio", handleToggleAudio);
+  }, [isMuted]);
 
   // Setup Parallax for Hero Background
   const { scrollYProgress } = useScroll({
@@ -28,6 +47,12 @@ export default function Home() {
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (audioRef.current && !isMuted) {
+      audioRef.current.volume = opacity.get();
+    }
+  });
 
   // Staggered Text Animation
   const textContainerVariant: any = {
@@ -47,6 +72,7 @@ export default function Home() {
 
   return (
     <>
+      <audio ref={audioRef} src="/audio/imperial_march.mp3" loop />
       <BootSequence onComplete={() => setIsBooted(true)} />
       
       <AnimatePresence>
@@ -76,11 +102,6 @@ export default function Home() {
               </div>
             </section>
             
-            {/* Anomaly Database Section */}
-            <section className="relative z-20 w-full border-b border-[#111111]">
-              <AnomalyDatabase />
-            </section>
-
             {/* Roster Grid Section */}
             <section className="relative z-20 bg-[#050505] w-full pt-24 pb-32 cursor-none">
               <motion.div
