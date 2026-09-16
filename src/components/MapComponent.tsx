@@ -89,7 +89,7 @@ export default function MapComponent({
         {incidents && incidents.map((incident) => (
           <Marker key={incident.id} position={[incident.lat, incident.lng]} icon={redIcon}>
             <Popup>
-              <div className="bg-slate-900 border border-slate-700 text-white font-sans w-48 p-2 rounded-sm shadow-[0_0_15px_rgba(239,68,68,0.2)]">
+              <div className="bg-slate-900 border border-slate-700 text-[#F8F9FA] font-sans w-48 p-2 rounded-sm shadow-[0_0_15px_rgba(239,68,68,0.2)]">
                 <h4 className="font-bold text-red-500 font-mono uppercase tracking-widest border-b border-slate-700 pb-1 mb-2">{incident.title}</h4>
                 <p className="text-sm mb-2 text-slate-300">{incident.description}</p>
                 <div className="flex flex-col text-[10px] tracking-widest text-slate-500 font-mono gap-1">
@@ -107,7 +107,7 @@ export default function MapComponent({
         {beacon && (
           <Marker position={[beacon.lat, beacon.lng]} icon={blueIcon}>
             <Popup>
-              <div className="bg-slate-900 border border-amber-500 p-2 rounded-sm text-white font-mono font-bold tracking-widest text-center shadow-[0_0_15px_rgba(245,158,11,0.2)]">
+              <div className="bg-slate-900 border border-amber-500 p-2 rounded-sm text-[#F8F9FA] font-mono font-bold tracking-widest text-center shadow-[0_0_15px_rgba(245,158,11,0.2)]">
                 DISTRESS BEACON <br/>
                 <span className="text-amber-500 animate-pulse text-xs">STATUS: LOCATION PINNED</span>
               </div>

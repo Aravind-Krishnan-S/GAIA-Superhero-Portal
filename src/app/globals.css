@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-  --color-gaia-bg: #000000;
-  --color-gaia-surface-1: #1F1F1F;
+  --color-gaia-bg: #050505;
+  --color-gaia-surface-1: #1A1A1A;
   --color-gaia-surface-2: #0A141D;
   --color-gaia-surface-3: #0D1822;
   
-  --color-gaia-cyan: #E50914; /* SYSTEM / INFO / ACTIVE */
+  --color-gaia-red: #E50914; /* SYSTEM / INFO / ACTIVE */
   --color-gaia-amber: #FFB000; /* CAUTION / UNKNOWN */
-  --color-gaia-red: #FF3333; /* CRITICAL / DISTRESS */
+  --color-gaia-red: #E50914; /* CRITICAL / DISTRESS */
   --color-gaia-teal: #00FFAA; /* GAIA / PLANETARY / BIOLOGICAL */
   
-  --color-gaia-cyan-glow: rgba(229, 9, 20, 0.15);
-  --color-gaia-text: #ffffff;
+  --color-gaia-red-glow: rgba(229, 9, 20, 0.15);
+  --color-gaia-text: #F8F9FA;
   --color-gaia-muted: #8892b0;
   
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -20,8 +20,8 @@
 }
 
 :root {
-  --background: #000000;
-  --foreground: #ffffff;
+  --background: #050505;
+  --foreground: #F8F9FA;
 }
 
 body {
@@ -96,7 +96,7 @@ body {
 }
 
 .terminal-text {
-  color: var(--color-gaia-cyan);
+  color: var(--color-gaia-red);
   font-family: var(--font-mono);
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -108,9 +108,48 @@ body {
 }
 
 @keyframes emergencyPulse {
-  0% { box-shadow: inset 0 0 0px rgba(255, 51, 51, 0); }
-  50% { box-shadow: inset 0 0 50px rgba(255, 51, 51, 0.2); }
-  100% { box-shadow: inset 0 0 0px rgba(255, 51, 51, 0); }
+  0% { box-shadow: inset 0 0 0px rgba(229, 9, 20, 0); }
+  50% { box-shadow: inset 0 0 50px rgba(229, 9, 20, 0.2); }
+  100% { box-shadow: inset 0 0 0px rgba(229, 9, 20, 0); }
+}
+
+@keyframes glitchContainer {
+  0% {
+    transform: translate(0) scale(0.98);
+    opacity: 0;
+    filter: blur(10px) contrast(200%);
+  }
+  10% {
+    transform: translate(-10px, 5px) scale(0.99);
+    opacity: 0.8;
+    filter: blur(5px) contrast(150%) hue-rotate(90deg);
+  }
+  20% {
+    transform: translate(10px, -5px) scale(0.99);
+    opacity: 0.4;
+    filter: blur(2px) contrast(120%) hue-rotate(-90deg);
+  }
+  30% {
+    transform: translate(-5px, 2px) scale(1);
+    opacity: 0.9;
+    filter: blur(0px) contrast(100%);
+  }
+  40% {
+    transform: translate(5px, -2px) scale(1);
+  }
+  50% {
+    transform: translate(0) scale(1);
+  }
+  100% {
+    transform: translate(0) scale(1);
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+@keyframes scanVertical {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
 }
 
 /* Custom Scrollbar for Intelligence Panels */

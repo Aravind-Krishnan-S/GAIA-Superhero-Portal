@@ -26,7 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased dark`}
     >
-      <body className="min-h-full flex flex-col font-sans bg-black text-white relative">
+      <body className="min-h-full flex flex-col font-sans bg-[#050505] text-[#F8F9FA] relative">
         <div className="tech-background"></div>
         <CustomCursor />
         <TopNavigation />

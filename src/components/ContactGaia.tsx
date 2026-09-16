@@ -170,7 +170,7 @@ export default function ContactGaia() {
                 startConversation();
               }
             }}
-            className="fixed bottom-6 right-6 z-50 p-4 rounded-full bg-[#000000] border border-[#E50914] text-[#E50914] shadow-[0_0_20px_rgba(229,9,20,0.3)] hover:shadow-[0_0_30px_rgba(229,9,20,0.6)] transition-all flex items-center justify-center group interactive overflow-hidden"
+            className="fixed bottom-6 right-6 z-50 p-4 rounded-full bg-[#050505] border border-[#E50914] text-[#E50914] shadow-[0_0_20px_rgba(229,9,20,0.3)] hover:shadow-[0_0_30px_rgba(229,9,20,0.6)] transition-all flex items-center justify-center group interactive overflow-hidden"
           >
             <div className="absolute inset-0 border border-[#E50914]/50 rounded-full animate-ping opacity-50" />
             <Activity size={24} className="group-hover:scale-110 transition-transform" />
@@ -186,10 +186,10 @@ export default function ContactGaia() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ type: "spring", damping: 30, stiffness: 300 }}
-            className="fixed bottom-6 right-6 z-50 w-[350px] sm:w-[450px] h-[600px] max-h-[85vh] flex flex-col bg-[#000000]/95 backdrop-blur-xl border border-[#E50914]/40 shadow-[0_0_50px_rgba(229,9,20,0.2)] font-mono overflow-hidden"
+            className="fixed bottom-6 right-6 z-50 w-[350px] sm:w-[450px] h-[600px] max-h-[85vh] flex flex-col bg-[#050505]/95 backdrop-blur-xl border border-[#E50914]/40 shadow-[0_0_50px_rgba(229,9,20,0.2)] font-mono overflow-hidden"
           >
             {/* Terminal Header */}
-            <div className="flex items-center justify-between px-6 py-4 bg-[#1F1F1F] border-b border-[#E50914]/30 relative overflow-hidden">
+            <div className="flex items-center justify-between px-6 py-4 bg-[#1A1A1A] border-b border-[#E50914]/30 relative overflow-hidden">
               {/* Scanline effect on header */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#E50914]/10 to-transparent w-full h-full animate-[translate_2s_infinite_linear]" style={{ animationName: 'scanHorizontal' }} />
               
@@ -220,7 +220,7 @@ export default function ContactGaia() {
             </div>
 
             {/* Visual Waveform (Simulated Voice) */}
-            <div className="h-12 border-b border-[#E50914]/20 bg-[#141414] flex items-center justify-center gap-1 overflow-hidden px-4">
+            <div className="h-12 border-b border-[#E50914]/20 bg-[#1A1A1A] flex items-center justify-center gap-1 overflow-hidden px-4">
               {Array.from({ length: 40 }).map((_, i) => (
                 <motion.div
                   key={i}
@@ -253,7 +253,7 @@ export default function ContactGaia() {
                   <div 
                     className={`px-4 py-3 text-sm tracking-wide border ${
                       msg.sender === "user" 
-                        ? "bg-[#E50914]/10 text-white border-[#E50914]/30 text-right" 
+                        ? "bg-[#E50914]/10 text-[#F8F9FA] border-[#E50914]/30 text-right" 
                         : "bg-transparent text-[#E50914] border-l-2 border-l-[#E50914] border-y-transparent border-r-transparent"
                     }`}
                   >
@@ -265,7 +265,7 @@ export default function ContactGaia() {
             </div>
 
             {/* Command Input Area */}
-            <div className="p-4 bg-[#1F1F1F] border-t border-[#E50914]/30">
+            <div className="p-4 bg-[#1A1A1A] border-t border-[#E50914]/30">
               <div className="flex items-center gap-3">
                 <span className="text-[#E50914] opacity-70 animate-pulse">&gt;</span>
                 <input

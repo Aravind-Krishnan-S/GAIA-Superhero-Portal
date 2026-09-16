@@ -31,10 +31,10 @@ const operatives = [
 
 const getThreatColor = (status: string) => {
   switch (status) {
-    case "ACTIVE": return "#ff3333"; // Red
+    case "ACTIVE": return "#E50914"; // Red
     case "MONITORED": return "#ffaa00"; // Amber
     case "CONTAINED": return "#00aa55"; // Green
-    default: return "#ffffff";
+    default: return "#F8F9FA";
   }
 };
 
@@ -86,7 +86,7 @@ function Marker({ anomaly, isHovered, setHoveredAnomaly }: { anomaly: any, isHov
         <div 
           className={`font-mono text-[10px] tracking-widest whitespace-nowrap px-3 py-2 border transition-all duration-300 ${
             isHovered 
-              ? "bg-[#141414]/90 backdrop-blur-md opacity-100 scale-100" 
+              ? "bg-[#1A1A1A]/90 backdrop-blur-md opacity-100 scale-100" 
               : "bg-transparent opacity-0 scale-90 pointer-events-none"
           }`}
           style={{
@@ -100,7 +100,7 @@ function Marker({ anomaly, isHovered, setHoveredAnomaly }: { anomaly: any, isHov
               <span className="font-bold text-xs">{anomaly.id} // {anomaly.name}</span>
             </div>
           </div>
-          <div className="text-[#888888] mb-2">
+          <div className="text-[#F8F9FA] mb-2">
             LAT: {anomaly.lat.toFixed(4)}<br/>
             LNG: {anomaly.lng.toFixed(4)}
           </div>
@@ -122,7 +122,7 @@ function Marker({ anomaly, isHovered, setHoveredAnomaly }: { anomaly: any, isHov
 
 function OperativeMarker({ op, isHovered, setHoveredAnomaly }: { op: any, isHovered: boolean, setHoveredAnomaly: (id: string | null) => void }) {
   const position = getCoordinates(op.lat, op.lng, 2.01);
-  const color = op.status === "DEPLOYED" ? "#00ffff" : "#aaaaaa";
+  const color = op.status === "DEPLOYED" ? "#E50914" : "#F8F9FA";
   
   const ringRef = useRef<THREE.Mesh>(null);
   
@@ -160,7 +160,7 @@ function OperativeMarker({ op, isHovered, setHoveredAnomaly }: { op: any, isHove
           <div className="flex items-center gap-2 mb-2 border-b border-inherit pb-2">
             <span className="font-bold text-xs">{op.id} // {op.name}</span>
           </div>
-          <div className="text-[#888888] mb-2">
+          <div className="text-[#F8F9FA] mb-2">
             LAT: {op.lat.toFixed(4)}<br/>
             LNG: {op.lng.toFixed(4)}
           </div>
@@ -187,8 +187,8 @@ function EarthScene({ layers }: { layers: { atmospheric: boolean; oceanic: boole
     <group ref={earthGroupRef}>
       <ambientLight intensity={0.6} />
       {/* Directional lighting to create soft natural shadows */}
-      <directionalLight position={[5, 3, 5]} intensity={2.0} color="#ffffff" />
-      <directionalLight position={[-5, -3, -5]} intensity={0.8} color="#ffffff" />
+      <directionalLight position={[5, 3, 5]} intensity={2.0} color="#F8F9FA" />
+      <directionalLight position={[-5, -3, -5]} intensity={0.8} color="#F8F9FA" />
 
       {/* The Earth */}
       <mesh>
@@ -197,7 +197,7 @@ function EarthScene({ layers }: { layers: { atmospheric: boolean; oceanic: boole
           map={earthMap}
           roughness={0.7}
           metalness={0.2}
-          color="#ffffff" // Full color texture
+          color="#F8F9FA" // Full color texture
         />
       </mesh>
 
@@ -253,31 +253,31 @@ export default function GaiaAnimation() {
     <div className="absolute inset-0 w-full h-full bg-transparent overflow-hidden flex items-center justify-center">
       
       {/* Top Left Viewport Overlay (Moved down to avoid TopNavigation overlap) */}
-      <div className="absolute top-64 left-8 z-10 font-mono tracking-widest text-[10px] text-[#E50914]/80 pointer-events-auto bg-[#000000]/60 p-4 border border-[#E50914]/20 backdrop-blur-sm rounded-sm">
+      <div className="absolute top-64 left-8 z-10 font-mono tracking-widest text-[10px] text-[#E50914]/80 pointer-events-auto bg-[#050505]/60 p-4 border border-[#E50914]/20 backdrop-blur-sm rounded-sm">
         <div className="mb-1">VIEWPORT: PLANETARY_MONITOR</div>
         <div>PROJECTION: ORTHOGRAPHIC_SIM</div>
-        <div className="mt-4 text-[#888888] border-b border-[#E50914]/20 pb-1 mb-2">LAYERS:</div>
+        <div className="mt-4 text-[#F8F9FA] border-b border-[#E50914]/20 pb-1 mb-2">LAYERS:</div>
         <div className="flex flex-col gap-2 pl-2 border-l-2 border-[#E50914]/40">
-          <button onClick={() => toggleLayer('atmospheric')} className="flex items-center text-left hover:text-white transition-colors">
+          <button onClick={() => toggleLayer('atmospheric')} className="flex items-center text-left hover:text-[#F8F9FA] transition-colors">
             <span className={`w-4 text-center mr-2 ${layers.atmospheric ? 'text-[#E50914]' : 'text-[#555555]'}`}>
               [{layers.atmospheric ? 'x' : ' '}]
             </span>
             ATMOSPHERIC
           </button>
-          <button onClick={() => toggleLayer('oceanic')} className="flex items-center text-left hover:text-white transition-colors" title="Base map texture (always active)">
+          <button onClick={() => toggleLayer('oceanic')} className="flex items-center text-left hover:text-[#F8F9FA] transition-colors" title="Base map texture (always active)">
             <span className={`w-4 text-center mr-2 ${layers.oceanic ? 'text-[#E50914]' : 'text-[#555555]'}`}>
               [{layers.oceanic ? 'x' : ' '}]
             </span>
             OCEANIC
           </button>
-          <button onClick={() => toggleLayer('anomalies')} className="flex items-center text-left hover:text-white transition-colors">
+          <button onClick={() => toggleLayer('anomalies')} className="flex items-center text-left hover:text-[#F8F9FA] transition-colors">
             <span className={`w-4 text-center mr-2 ${layers.anomalies ? 'text-[#E50914]' : 'text-[#555555]'}`}>
               [{layers.anomalies ? 'x' : ' '}]
             </span>
             ANOMALIES
           </button>
-          <button onClick={() => toggleLayer('operatives')} className="flex items-center text-left hover:text-white transition-colors text-[#00ffff]">
-            <span className={`w-4 text-center mr-2 ${layers.operatives ? 'text-[#00ffff]' : 'text-[#555555]'}`}>
+          <button onClick={() => toggleLayer('operatives')} className="flex items-center text-left hover:text-[#F8F9FA] transition-colors text-[#E50914]">
+            <span className={`w-4 text-center mr-2 ${layers.operatives ? 'text-[#E50914]' : 'text-[#555555]'}`}>
               [{layers.operatives ? 'x' : ' '}]
             </span>
             OPERATIVES

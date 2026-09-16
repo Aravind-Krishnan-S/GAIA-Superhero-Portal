@@ -69,7 +69,7 @@ export default function Hero3D() {
         <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>
           <ambientLight intensity={0.2} />
           <pointLight position={[10, 10, 10]} intensity={1.5} color="#e50914" />
-          <pointLight position={[-10, -10, -10]} intensity={0.5} color="#ffffff" />
+          <pointLight position={[-10, -10, -10]} intensity={0.5} color="#F8F9FA" />
           <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
           <FloatingGeometry />
           <Environment preset="night" />
@@ -78,13 +78,13 @@ export default function Hero3D() {
 
       {/* Grid Background */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-20" 
-           style={{ backgroundImage: "linear-gradient(#141414 1px, transparent 1px), linear-gradient(90deg, #141414 1px, transparent 1px)", backgroundSize: "40px 40px" }}>
+           style={{ backgroundImage: "linear-gradient(#1A1A1A 1px, transparent 1px), linear-gradient(90deg, #1A1A1A 1px, transparent 1px)", backgroundSize: "40px 40px" }}>
       </div>
 
       {/* Glassmorphism UI Overlay */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 w-full h-full pointer-events-none">
         <motion.div 
-          className="glass-panel p-12 max-w-4xl w-full pointer-events-auto flex flex-col items-center bg-[#000000]/80 border-[#E50914]/30"
+          className="glass-panel p-12 max-w-4xl w-full pointer-events-auto flex flex-col items-center bg-[#050505]/80 border-[#E50914]/30"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
@@ -95,9 +95,9 @@ export default function Hero3D() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
-            <span className="text-white">G.</span>
+            <span className="text-[#F8F9FA]">G.</span>
             <span className="text-[#E50914]">A.</span>
-            <span className="text-white">I.</span>
+            <span className="text-[#F8F9FA]">I.</span>
             <span className="text-[#E50914]">A.</span>
           </motion.h1>
           
@@ -108,12 +108,12 @@ export default function Hero3D() {
             transition={{ delay: 0.6, duration: 0.8 }}
           >
             <p className="font-bold text-[#E50914] mb-4">[ GLOBAL ANOMALY INVESTIGATION AGENCY ]</p>
-            <p className="text-sm md:text-base leading-relaxed text-[#aaaaaa]">Forged from the sacrifice of the primordial guardian GAIA, we stand as the vanguard. Managing the first generation of superhumans to protect Earth from the unknown.</p>
+            <p className="text-sm md:text-base leading-relaxed text-[#F8F9FA]">Forged from the sacrifice of the primordial guardian GAIA, we stand as the vanguard. Managing the first generation of superhumans to protect Earth from the unknown.</p>
           </motion.div>
 
           <motion.button 
             onClick={scrollToMap}
-            className="relative group flex items-center justify-center gap-3 px-8 py-4 bg-[#141414] border-2 border-[#E50914] text-[#E50914] font-mono font-bold uppercase tracking-widest overflow-hidden transition-all duration-300 hover:bg-[#E50914] hover:text-white hover:shadow-[0_0_20px_rgba(229,9,20,0.6)]"
+            className="relative group flex items-center justify-center gap-3 px-8 py-4 bg-[#1A1A1A] border-2 border-[#E50914] text-[#E50914] font-mono font-bold uppercase tracking-widest overflow-hidden transition-all duration-300 hover:bg-[#E50914] hover:text-[#F8F9FA] hover:shadow-[0_0_20px_rgba(229,9,20,0.6)]"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.9, duration: 0.5 }}

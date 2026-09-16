@@ -10,10 +10,10 @@ const CITY_SIZE = 100;
 
 function CityGeometry() {
   const meshRef = useRef<THREE.InstancedMesh>(null);
-  
+
   // Create a base geometry and material for all buildings
   const geometry = useMemo(() => new THREE.BoxGeometry(1, 1, 1), []);
-  
+
   const material = useMemo(() => {
     return new THREE.MeshStandardMaterial({
       color: "#0a0a0a",
@@ -26,19 +26,19 @@ function CityGeometry() {
 
   useLayoutEffect(() => {
     if (!meshRef.current) return;
-    
+
     const dummy = new THREE.Object3D();
-    
+
     for (let i = 0; i < BUILDINGS_COUNT; i++) {
       // Random position within city limits
       const x = (Math.random() - 0.5) * CITY_SIZE;
       const z = (Math.random() - 0.5) * CITY_SIZE;
-      
+
       // Leave a "highway" down the middle (x between -5 and 5 is empty)
       if (x > -5 && x < 5) continue;
 
       // Random height for skyscrapers
-      const height = Math.random() > 0.8 ? 
+      const height = Math.random() > 0.8 ?
         Math.random() * 20 + 10 : // Tall skyscrapers
         Math.random() * 8 + 2;    // Regular buildings
 
@@ -54,7 +54,7 @@ function CityGeometry() {
       // Randomly assign emissive color to simulate neon lights on some buildings
       if (Math.random() > 0.7) {
         const neonColor = new THREE.Color(
-          Math.random() > 0.5 ? "#E50914" : "#00ffff" // GAIA Red or Cyan
+          Math.random() > 0.5 ? "#E50914" : "#E50914" // GAIA Red or red
         );
         meshRef.current.setColorAt(i, neonColor);
       } else {
@@ -72,7 +72,7 @@ function CityGeometry() {
     if (!meshRef.current) return;
     // Move city towards camera
     meshRef.current.position.z += 10 * delta;
-    
+
     // Reset position to create seamless loop
     if (meshRef.current.position.z > CITY_SIZE / 2) {
       meshRef.current.position.z -= CITY_SIZE / 2;
@@ -101,7 +101,7 @@ function NeonVehicles() {
         (Math.random() - 0.5) * CITY_SIZE // Spread across Z
       ),
       speed: Math.random() * 30 + 10,
-      color: Math.random() > 0.5 ? "#E50914" : "#00ffff"
+      color: Math.random() > 0.5 ? "#E50914" : "#E50914"
     }));
   }, []);
 
@@ -132,18 +132,18 @@ function NeonVehicles() {
 export default function CyberpunkCityscape() {
   return (
     <div className="w-full h-full bg-[#050505] relative overflow-hidden">
-      
+
       <Canvas camera={{ position: [0, 15, 30], fov: 60, rotation: [-Math.PI / 8, 0, 0] }}>
         <fog attach="fog" args={["#050505", 10, 80]} />
-        <ambientLight intensity={0.2} color="#00ffff" />
-        
+        <ambientLight intensity={0.2} color="#E50914" />
+
         {/* Neon City Lighting */}
         <directionalLight position={[10, 20, -10]} intensity={2} color="#E50914" />
-        <directionalLight position={[-10, 10, -20]} intensity={1} color="#00ffff" />
+        <directionalLight position={[-10, 10, -20]} intensity={1} color="#E50914" />
         <pointLight position={[0, 10, 0]} intensity={5} color="#E50914" distance={50} />
 
         <Stars radius={100} depth={50} count={2000} factor={4} saturation={0} fade speed={1} />
-        
+
         <CityGeometry />
         <NeonVehicles />
       </Canvas>

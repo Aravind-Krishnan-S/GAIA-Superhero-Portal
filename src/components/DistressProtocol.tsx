@@ -79,6 +79,11 @@ export default function DistressProtocol({ isOpen, onClose }: DistressProtocolPr
         const payload = {
           name: contact || "Anonymous Operative",
           email: email,
+          user_name: contact || "Anonymous Operative",
+          user_email: email,
+          to_email: email,
+          reply_to: email,
+          recipient_email: email,
           title: `[${threatLevel}] ${incidentType} at ${beacon.lat.toFixed(4)}, ${beacon.lng.toFixed(4)}`,
           description: description,
           severity: threatLevel
@@ -116,26 +121,26 @@ export default function DistressProtocol({ isOpen, onClose }: DistressProtocolPr
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-[#000000]/90 backdrop-blur-md font-mono"
+          className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-[#050505]/90 backdrop-blur-md font-mono"
         >
           {/* Global Scanlines for Emergency Mode */}
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,51,51,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,51,51,0.05)_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none" />
-          <div className="absolute inset-0 pointer-events-none border-[8px] border-[#ff3333]/30 animate-pulse" />
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(229, 9, 20,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(229, 9, 20,0.05)_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none" />
+          <div className="absolute inset-0 pointer-events-none border-[8px] border-[#E50914]/30 animate-pulse" />
 
           <motion.div
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.95, opacity: 0 }}
-            className="w-full max-w-5xl h-[85vh] md:h-[75vh] flex flex-col md:flex-row border border-[#ff3333]/50 shadow-[0_0_50px_rgba(255,51,51,0.2)] bg-[#000000] relative overflow-hidden"
+            className="w-full max-w-5xl h-[85vh] md:h-[75vh] flex flex-col md:flex-row border border-[#E50914]/50 shadow-[0_0_50px_rgba(229, 9, 20,0.2)] bg-[#050505] relative overflow-hidden"
           >
             {/* Cinematic Overlay FX */}
-            <div className="absolute top-0 left-0 w-full h-1 bg-[#ff3333] shadow-[0_0_15px_rgba(255,51,51,1)]" />
+            <div className="absolute top-0 left-0 w-full h-1 bg-[#E50914] shadow-[0_0_15px_rgba(229, 9, 20,1)]" />
 
             {/* Left: Map & Tactical */}
-            <div className="w-full md:w-1/2 h-64 md:h-full relative border-b md:border-b-0 md:border-r border-[#ff3333]/30 bg-[#1F1F1F]">
+            <div className="w-full md:w-1/2 h-64 md:h-full relative border-b md:border-b-0 md:border-r border-[#E50914]/30 bg-[#1A1A1A]">
               {isLocating && (
-                <div className="absolute inset-0 z-20 flex items-center justify-center bg-[#000000]/80 backdrop-blur-sm">
-                  <div className="flex flex-col items-center gap-4 text-[#ff3333]">
+                <div className="absolute inset-0 z-20 flex items-center justify-center bg-[#050505]/80 backdrop-blur-sm">
+                  <div className="flex flex-col items-center gap-4 text-[#E50914]">
                     <Radio className="w-12 h-12 animate-ping" />
                     <span className="tracking-widest text-xs animate-pulse">ACQUIRING SIGNAL LOCK...</span>
                   </div>
@@ -143,8 +148,8 @@ export default function DistressProtocol({ isOpen, onClose }: DistressProtocolPr
               )}
               
               <div className="absolute top-4 left-4 z-10 flex flex-col gap-2 pointer-events-none">
-                <div className="bg-[#ff3333]/20 border border-[#ff3333] text-[#ff3333] px-3 py-1 text-[10px] tracking-widest flex items-center gap-2 backdrop-blur-md">
-                  <div className="w-1.5 h-1.5 bg-[#ff3333] animate-pulse" />
+                <div className="bg-[#E50914]/20 border border-[#E50914] text-[#E50914] px-3 py-1 text-[10px] tracking-widest flex items-center gap-2 backdrop-blur-md">
+                  <div className="w-1.5 h-1.5 bg-[#E50914] animate-pulse" />
                   EMERGENCY UPLINK ACTIVE
                 </div>
               </div>
@@ -157,8 +162,8 @@ export default function DistressProtocol({ isOpen, onClose }: DistressProtocolPr
                 />
               </div>
 
-              <div className="absolute bottom-4 left-4 right-4 z-10 bg-[#000000]/80 border border-[#ff3333]/30 p-3 flex justify-between items-center backdrop-blur-md">
-                <div className="text-[#ff3333] text-[10px] tracking-widest flex items-center gap-2">
+              <div className="absolute bottom-4 left-4 right-4 z-10 bg-[#050505]/80 border border-[#E50914]/30 p-3 flex justify-between items-center backdrop-blur-md">
+                <div className="text-[#E50914] text-[10px] tracking-widest flex items-center gap-2">
                   <MapPin size={12} />
                   {beacon ? `LAT: ${beacon.lat.toFixed(4)} LNG: ${beacon.lng.toFixed(4)}` : "AWAITING COORDINATES"}
                 </div>
@@ -169,19 +174,19 @@ export default function DistressProtocol({ isOpen, onClose }: DistressProtocolPr
             {/* Right: Form Data */}
             <div className="w-full md:w-1/2 h-full flex flex-col relative overflow-hidden">
               {/* Header */}
-              <div className="p-6 border-b border-[#ff3333]/30 flex justify-between items-start bg-[#ff3333]/5">
+              <div className="p-6 border-b border-[#E50914]/30 flex justify-between items-start bg-[#E50914]/5">
                 <div>
-                  <h2 className="text-2xl font-bold text-[#ff3333] tracking-widest flex items-center gap-3">
+                  <h2 className="text-2xl font-bold text-[#E50914] tracking-widest flex items-center gap-3">
                     <ShieldAlert size={24} className="animate-pulse" />
                     DISTRESS PROTOCOL
                   </h2>
-                  <p className="text-[#ff3333]/60 text-[10px] tracking-widest mt-1">
+                  <p className="text-[#E50914]/60 text-[10px] tracking-widest mt-1">
                     WARNING: CLASS-A FELONY FOR FALSE TRANSMISSIONS
                   </p>
                 </div>
                 <button 
                   onClick={onClose}
-                  className="text-[#ff3333]/60 hover:text-[#ff3333] transition-colors p-2 interactive"
+                  className="text-[#E50914]/60 hover:text-[#E50914] transition-colors p-2 interactive"
                 >
                   <span className="text-xs tracking-widest">[ABORT]</span>
                 </button>
@@ -204,7 +209,7 @@ export default function DistressProtocol({ isOpen, onClose }: DistressProtocolPr
                         OPERATIVES DISPATCHED TO YOUR SECTOR.
                       </p>
                     </div>
-                    <div className="text-[10px] text-[#888888] tracking-widest animate-pulse pt-8">
+                    <div className="text-[10px] text-[#F8F9FA] tracking-widest animate-pulse pt-8">
                       TERMINATING CONNECTION IN 3... 2... 1...
                     </div>
                   </div>
@@ -212,12 +217,12 @@ export default function DistressProtocol({ isOpen, onClose }: DistressProtocolPr
                   <form onSubmit={handleSubmit} className="flex flex-col h-full gap-6">
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <label className="text-[10px] text-[#ff3333] tracking-widest">INCIDENT TYPE</label>
+                        <label className="text-[10px] text-[#E50914] tracking-widest">INCIDENT TYPE</label>
                         <select 
                           required
                           value={incidentType}
                           onChange={(e) => setIncidentType(e.target.value)}
-                          className="w-full bg-[#ff3333]/5 border border-[#ff3333]/30 text-[#ff3333] p-3 text-xs tracking-widest focus:outline-none focus:border-[#ff3333] appearance-none"
+                          className="w-full bg-[#E50914]/5 border border-[#E50914]/30 text-[#E50914] p-3 text-xs tracking-widest focus:outline-none focus:border-[#E50914] appearance-none"
                         >
                           <option value="" disabled>SELECT TYPE</option>
                           <option value="VILLAIN">HOSTILE ENTITY</option>
@@ -228,12 +233,12 @@ export default function DistressProtocol({ isOpen, onClose }: DistressProtocolPr
                         </select>
                       </div>
                       <div className="space-y-2">
-                        <label className="text-[10px] text-[#ff3333] tracking-widest">THREAT LEVEL</label>
+                        <label className="text-[10px] text-[#E50914] tracking-widest">THREAT LEVEL</label>
                         <select 
                           required
                           value={threatLevel}
                           onChange={(e) => setThreatLevel(e.target.value)}
-                          className="w-full bg-[#ff3333]/5 border border-[#ff3333]/30 text-[#ff3333] p-3 text-xs tracking-widest focus:outline-none focus:border-[#ff3333] appearance-none"
+                          className="w-full bg-[#E50914]/5 border border-[#E50914]/30 text-[#E50914] p-3 text-xs tracking-widest focus:outline-none focus:border-[#E50914] appearance-none"
                         >
                           <option value="" disabled>ASSESS THREAT</option>
                           <option value="GAMMA">GAMMA (LOCAL)</option>
@@ -245,36 +250,36 @@ export default function DistressProtocol({ isOpen, onClose }: DistressProtocolPr
                     </div>
 
                     <div className="space-y-2 flex-1 flex flex-col">
-                      <label className="text-[10px] text-[#ff3333] tracking-widest">TACTICAL SITUATION</label>
+                      <label className="text-[10px] text-[#E50914] tracking-widest">TACTICAL SITUATION</label>
                       <textarea 
                         required
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                         placeholder="DETAIL HOSTILES, CASUALTIES, AND HAZARDS..."
-                        className="w-full flex-1 min-h-[120px] bg-[#ff3333]/5 border border-[#ff3333]/30 text-[#ff3333] placeholder-[#ff3333]/30 p-4 text-xs tracking-widest focus:outline-none focus:border-[#ff3333] resize-none"
+                        className="w-full flex-1 min-h-[120px] bg-[#E50914]/5 border border-[#E50914]/30 text-[#E50914] placeholder-[#E50914]/30 p-4 text-xs tracking-widest focus:outline-none focus:border-[#E50914] resize-none"
                       />
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <label className="text-[10px] text-[#ff3333] tracking-widest">UPLINK EMAIL (REQUIRED)</label>
+                        <label className="text-[10px] text-[#E50914] tracking-widest">UPLINK EMAIL (REQUIRED)</label>
                         <input 
                           type="email" 
                           required
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           placeholder="OPERATIVE@GAIA.COM"
-                          className="w-full bg-[#ff3333]/5 border border-[#ff3333]/30 text-[#ff3333] placeholder-[#ff3333]/30 p-3 text-xs tracking-widest focus:outline-none focus:border-[#ff3333]"
+                          className="w-full bg-[#E50914]/5 border border-[#E50914]/30 text-[#E50914] placeholder-[#E50914]/30 p-3 text-xs tracking-widest focus:outline-none focus:border-[#E50914]"
                         />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-[10px] text-[#ff3333] tracking-widest">CONTACT ID (OPTIONAL)</label>
+                        <label className="text-[10px] text-[#E50914] tracking-widest">CONTACT ID (OPTIONAL)</label>
                         <input 
                           type="text" 
                           value={contact}
                           onChange={(e) => setContact(e.target.value)}
                           placeholder="CITIZEN ID OR CALLSIGN"
-                          className="w-full bg-[#ff3333]/5 border border-[#ff3333]/30 text-[#ff3333] placeholder-[#ff3333]/30 p-3 text-xs tracking-widest focus:outline-none focus:border-[#ff3333]"
+                          className="w-full bg-[#E50914]/5 border border-[#E50914]/30 text-[#E50914] placeholder-[#E50914]/30 p-3 text-xs tracking-widest focus:outline-none focus:border-[#E50914]"
                         />
                       </div>
                     </div>
@@ -284,8 +289,8 @@ export default function DistressProtocol({ isOpen, onClose }: DistressProtocolPr
                       disabled={isSubmitting}
                       className={`w-full py-4 text-sm font-bold tracking-widest transition-all mt-auto interactive ${
                         isSubmitting 
-                          ? 'bg-transparent border border-[#ff3333]/30 text-[#ff3333]/50 cursor-not-allowed'
-                          : 'bg-[#ff3333]/10 border border-[#ff3333] text-[#ff3333] hover:bg-[#ff3333] hover:text-black shadow-[0_0_20px_rgba(255,51,51,0.2)] hover:shadow-[0_0_30px_rgba(255,51,51,0.6)]'
+                          ? 'bg-transparent border border-[#E50914]/30 text-[#E50914]/50 cursor-not-allowed'
+                          : 'bg-[#E50914]/10 border border-[#E50914] text-[#E50914] hover:bg-[#E50914] hover:text-[#050505] shadow-[0_0_20px_rgba(229, 9, 20,0.2)] hover:shadow-[0_0_30px_rgba(229, 9, 20,0.6)]'
                       }`}
                     >
                       {isSubmitting ? 'TRANSMITTING SIGNAL...' : 'INITIATE BEACON'}

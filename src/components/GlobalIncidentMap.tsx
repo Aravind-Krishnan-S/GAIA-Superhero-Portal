@@ -22,7 +22,7 @@ export default function GlobalIncidentMap() {
   };
 
   return (
-    <div className="w-full h-full min-h-[600px] relative bg-[#000000] border border-[#E50914]/20 overflow-hidden flex flex-col font-mono text-sm group">
+    <div className="w-full h-full min-h-[600px] relative bg-[#050505] border border-[#E50914]/20 overflow-hidden flex flex-col font-mono text-sm group">
       {/* Background Grid */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(229,9,20,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(229,9,20,0.05)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
       
@@ -34,13 +34,13 @@ export default function GlobalIncidentMap() {
       />
 
       {/* Map Header */}
-      <div className="p-6 border-b border-[#E50914]/20 flex justify-between items-center z-20 bg-[#1F1F1F]/80 backdrop-blur-sm">
+      <div className="p-6 border-b border-[#E50914]/20 flex justify-between items-center z-20 bg-[#1A1A1A]/80 backdrop-blur-sm">
         <div className="flex items-center gap-4">
           <Crosshair className="text-[#E50914] w-5 h-5 animate-spin-slow" />
           <h2 className="text-[#E50914] font-bold tracking-widest text-lg drop-shadow-[0_0_5px_rgba(229,9,20,0.5)]">GLOBAL INCIDENT TACTICAL MAP</h2>
         </div>
         <div className="flex gap-6 text-[10px] tracking-widest">
-          <div className="flex items-center gap-2"><div className="w-2 h-2 bg-[#ff3333]" /> DISTRESS (1)</div>
+          <div className="flex items-center gap-2"><div className="w-2 h-2 bg-[#E50914]" /> DISTRESS (1)</div>
           <div className="flex items-center gap-2"><div className="w-2 h-2 bg-[#ffb000]" /> ANOMALY (2)</div>
           <div className="flex items-center gap-2"><div className="w-2 h-2 bg-[#E50914]" /> OPERATIVE (1)</div>
         </div>
@@ -69,7 +69,7 @@ export default function GlobalIncidentMap() {
           {/* Render Incidents on Map */}
           {incidents.map(inc => {
             const { x, y } = getXY(inc.lat, inc.lng);
-            const color = inc.type === 'DISTRESS' ? '#ff3333' : inc.type === 'ANOMALY' ? '#ffb000' : '#E50914';
+            const color = inc.type === 'DISTRESS' ? '#E50914' : inc.type === 'ANOMALY' ? '#ffb000' : '#E50914';
             
             return (
               <g 
@@ -95,38 +95,38 @@ export default function GlobalIncidentMap() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 20 }}
-              className="absolute right-8 top-8 w-80 bg-[#1F1F1F]/90 border border-[#E50914]/30 backdrop-blur-md p-6 shadow-[0_0_30px_rgba(0,0,0,0.8)]"
+              className="absolute right-8 top-8 w-80 bg-[#1A1A1A]/90 border border-[#E50914]/30 backdrop-blur-md p-6 shadow-[0_0_30px_rgba(0,0,0,0.8)]"
             >
               <div className="flex justify-between items-start mb-4 border-b border-[#E50914]/20 pb-4">
                 <div>
                   <h3 className="text-[#E50914] font-bold text-lg">{selectedIncident.id}</h3>
-                  <div className="text-[10px] text-[#888888]">CLASSIFIED INTELLIGENCE REPORT</div>
+                  <div className="text-[10px] text-[#F8F9FA]">CLASSIFIED INTELLIGENCE REPORT</div>
                 </div>
-                <button onClick={() => setSelectedIncident(null)} className="text-[#E50914] hover:text-white">[X]</button>
+                <button onClick={() => setSelectedIncident(null)} className="text-[#E50914] hover:text-[#F8F9FA]">[X]</button>
               </div>
               
               <div className="space-y-4 text-xs">
                 <div>
                   <span className="text-[#555555]">CLASSIFICATION:</span><br/>
-                  <span style={{ color: selectedIncident.type === 'DISTRESS' ? '#ff3333' : selectedIncident.type === 'ANOMALY' ? '#ffb000' : '#E50914' }}>
+                  <span style={{ color: selectedIncident.type === 'DISTRESS' ? '#E50914' : selectedIncident.type === 'ANOMALY' ? '#ffb000' : '#E50914' }}>
                     {selectedIncident.type}
                   </span>
                 </div>
                 <div>
                   <span className="text-[#555555]">LOCATION:</span><br/>
-                  <span className="text-[#cccccc]">{selectedIncident.location}</span>
+                  <span className="text-[#F8F9FA]">{selectedIncident.location}</span>
                 </div>
                 <div>
                   <span className="text-[#555555]">COORDINATES:</span><br/>
-                  <span className="text-[#cccccc]">{selectedIncident.lat.toFixed(4)}, {selectedIncident.lng.toFixed(4)}</span>
+                  <span className="text-[#F8F9FA]">{selectedIncident.lat.toFixed(4)}, {selectedIncident.lng.toFixed(4)}</span>
                 </div>
                 <div>
                   <span className="text-[#555555]">STATUS:</span><br/>
-                  <span className="text-[#cccccc]">{selectedIncident.status}</span>
+                  <span className="text-[#F8F9FA]">{selectedIncident.status}</span>
                 </div>
 
                 <div className="mt-6 pt-4 border-t border-[#E50914]/20">
-                  <button className="w-full py-2 bg-[#E50914]/10 border border-[#E50914]/30 text-[#E50914] hover:bg-[#E50914] hover:text-black transition-all interactive" data-hover="[DISPATCH ASSETS]">
+                  <button className="w-full py-2 bg-[#E50914]/10 border border-[#E50914]/30 text-[#E50914] hover:bg-[#E50914] hover:text-[#050505] transition-all interactive" data-hover="[DISPATCH ASSETS]">
                     DISPATCH ASSETS
                   </button>
                 </div>

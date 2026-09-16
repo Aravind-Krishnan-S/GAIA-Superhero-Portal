@@ -87,6 +87,11 @@ export default function IncidentMap() {
           // Add default name/email since map doesn't collect them, but template might expect them
           name: "Anonymous Operative",
           email: "classified@gaia.gov",
+          user_name: "Anonymous Operative",
+          user_email: "classified@gaia.gov",
+          to_email: "classified@gaia.gov",
+          reply_to: "classified@gaia.gov",
+          recipient_email: "classified@gaia.gov",
           grievance: incidentDetails.description
         };
         await emailjs.send(serviceId, templateId, emailData, publicKey);
@@ -104,7 +109,7 @@ export default function IncidentMap() {
     <section id="incident-map" className="relative w-full min-h-[800px] py-20 px-4 md:px-12 z-10 flex flex-col items-center bg-slate-900 border-t border-slate-800">
       <div className="text-center mb-12">
         <h2 className="text-4xl md:text-5xl font-black mb-4 uppercase tracking-widest font-mono">
-          <span className="text-white">Global</span> <span className="text-amber-500">Surveillance</span>
+          <span className="text-[#F8F9FA]">Global</span> <span className="text-amber-500">Surveillance</span>
         </h2>
         <p className="text-slate-400 max-w-2xl mx-auto font-mono text-sm tracking-widest">
           [ DEPLOY DISTRESS BEACON ON GRID. TACTICAL TEAMS ON STANDBY. ]
@@ -126,7 +131,7 @@ export default function IncidentMap() {
             >
               <div>
                 <div className="flex justify-between items-center mb-6 border-b border-slate-700 pb-4">
-                  <h3 className="text-2xl font-bold text-white tracking-widest">FILE REPORT</h3>
+                  <h3 className="text-2xl font-bold text-[#F8F9FA] tracking-widest">FILE REPORT</h3>
                   <button onClick={closeForm} className="text-slate-400 hover:text-red-500 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                   </button>
@@ -143,7 +148,7 @@ export default function IncidentMap() {
                     <label className="text-xs uppercase tracking-widest text-slate-400 font-bold">Anomaly Classification</label>
                     <input 
                       type="text" 
-                      className="bg-slate-900 border border-slate-700 rounded-sm p-2 text-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all font-sans" 
+                      className="bg-slate-900 border border-slate-700 rounded-sm p-2 text-[#F8F9FA] focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all font-sans" 
                       placeholder="e.g. Unknown Entity" 
                       required
                       value={incidentDetails.title}
@@ -153,7 +158,7 @@ export default function IncidentMap() {
                   <div className="flex flex-col gap-1">
                     <label className="text-xs uppercase tracking-widest text-slate-400 font-bold">Situation Details</label>
                     <textarea 
-                      className="bg-slate-900 border border-slate-700 rounded-sm p-2 text-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all resize-none font-sans" 
+                      className="bg-slate-900 border border-slate-700 rounded-sm p-2 text-[#F8F9FA] focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all resize-none font-sans" 
                       placeholder="Provide situation details..." 
                       rows={3}
                       required
@@ -164,7 +169,7 @@ export default function IncidentMap() {
                   <div className="flex flex-col gap-1">
                     <label className="text-xs uppercase tracking-widest text-slate-400 font-bold">Threat Severity</label>
                     <select 
-                      className="bg-slate-900 border border-slate-700 rounded-sm p-2 text-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all"
+                      className="bg-slate-900 border border-slate-700 rounded-sm p-2 text-[#F8F9FA] focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all"
                       value={incidentDetails.severity}
                       onChange={(e) => setIncidentDetails({...incidentDetails, severity: e.target.value})}
                     >
@@ -175,7 +180,7 @@ export default function IncidentMap() {
                   </div>
                   <button 
                     type="submit"
-                    className="w-full py-3 mt-4 bg-red-600 hover:bg-red-500 text-white font-bold tracking-widest rounded-sm transition-all shadow-[0_0_15px_rgba(220,38,38,0.4)] hover:shadow-[0_0_20px_rgba(220,38,38,0.6)] border border-red-400"
+                    className="w-full py-3 mt-4 bg-red-600 hover:bg-red-500 text-[#F8F9FA] font-bold tracking-widest rounded-sm transition-all shadow-[0_0_15px_rgba(220,38,38,0.4)] hover:shadow-[0_0_20px_rgba(220,38,38,0.6)] border border-red-400"
                   >
                     DEPLOY BEACON
                   </button>

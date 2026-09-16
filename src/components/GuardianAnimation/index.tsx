@@ -56,7 +56,7 @@ function SceneManager() {
 
 export default function GuardianAnimation() {
   return (
-    <div className="w-full h-[500px] relative bg-black rounded-xl overflow-hidden shadow-2xl border border-gray-800">
+    <div className="w-full h-[500px] relative bg-[#050505] rounded-xl overflow-hidden shadow-2xl border border-gray-800">
       <Canvas camera={{ position: [0, 0, 4], fov: 45 }}>
         <SceneManager />
       </Canvas>

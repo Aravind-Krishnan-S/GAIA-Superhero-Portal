@@ -47,7 +47,7 @@ export default function TechTimeline() {
       </div>
 
       <div className="text-center mb-32 z-10">
-        <h2 className="text-4xl md:text-5xl font-black mb-4 uppercase tracking-widest text-white font-mono">
+        <h2 className="text-4xl md:text-5xl font-black mb-4 uppercase tracking-widest text-[#F8F9FA] font-mono">
           Historical <span className="text-amber-500">Archives</span>
         </h2>
         <p className="text-slate-400 font-mono text-sm tracking-widest">[ CLASSIFIED TIMELINE ]</p>
@@ -66,7 +66,7 @@ export default function TechTimeline() {
                   0{index + 1}
                 </div>
                 <h4 className="text-amber-500 font-mono font-bold text-xl mb-2 tracking-widest">{item.year}</h4>
-                <h3 className="text-2xl font-bold text-white mb-4 uppercase">{item.title}</h3>
+                <h3 className="text-2xl font-bold text-[#F8F9FA] mb-4 uppercase">{item.title}</h3>
                 <p className="text-slate-300 leading-relaxed font-sans">{item.description}</p>
               </div>
             </motion.div>
