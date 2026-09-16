@@ -27,6 +27,34 @@ export default function StarWarsCrawl() {
     }
   ];
 
+  const contentBlock = (
+    <div className="w-full flex flex-col items-center">
+      <div className="mb-32 flex justify-center">
+        <h1 className="text-7xl md:text-[10rem] mb-8 tracking-wider font-black leading-none drop-shadow-[0_0_20px_rgba(229,9,20,0.4)]" 
+            style={{ 
+              color: 'black', 
+              WebkitTextStroke: '4px #E50914', 
+              fontFamily: 'Impact, "Arial Black", sans-serif'
+            }}>
+          G.A.I.A
+        </h1>
+      </div>
+
+      {chapters.map((ch, i) => (
+        <div key={i} className="mb-24 w-full">
+          <h2 className="text-2xl md:text-4xl mb-2 font-bold tracking-[0.3em] text-[#FF2A2A] drop-shadow-[0_0_8px_rgba(255,42,42,0.5)]" style={{ fontFamily: "'Univers Light Ultra Condensed', 'Univers', sans-serif" }}>{ch.chapter}</h2>
+          <h3 className="text-xl md:text-3xl mb-8 font-bold tracking-[0.2em] text-[#FF2A2A]/80" style={{ fontFamily: "'Univers Light Ultra Condensed', 'Univers', sans-serif" }}>{ch.title}</h3>
+          <p className="text-xl md:text-3xl leading-relaxed text-[#F8F9FA] tracking-[0.1em] font-bold text-justify" style={{ textAlignLast: 'center', fontFamily: "'News Gothic Bold', 'News Gothic', sans-serif" }}>
+            {ch.desc}
+          </p>
+        </div>
+      ))}
+      
+      {/* 8 lines of spacing: ~24rem */}
+      <div className="h-96 w-full"></div>
+    </div>
+  );
+
   return (
     <div className="absolute inset-x-0 top-0 h-[80vh] overflow-hidden flex items-end justify-center pointer-events-none font-mono z-0">
       <style>{`
@@ -37,17 +65,30 @@ export default function StarWarsCrawl() {
           display: flex;
           justify-content: center;
           align-items: flex-end;
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+        }
+        .crawl-plane {
+          width: 100%;
+          max-width: 48rem;
+          height: 100%;
+          transform-origin: 50% 100%;
+          transform: rotateX(25deg);
+          position: relative;
         }
         .crawl-text {
-          transform-origin: 50% 100%;
-          animation: crawl 240s linear infinite;
+          width: 100%;
+          position: absolute;
+          left: 0;
+          animation: crawl 100s linear infinite;
         }
         @keyframes crawl {
           0% {
-            transform: rotateX(25deg) translateY(100%);
+            transform: translateY(80vh);
           }
           100% {
-            transform: rotateX(25deg) translateY(-150%);
+            transform: translateY(calc(-50% + 80vh));
           }
         }
       `}</style>
@@ -56,30 +97,11 @@ export default function StarWarsCrawl() {
       <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-[#050505] via-[#050505]/80 to-transparent z-10 pointer-events-none" />
 
       <div className="perspective-container z-0">
-        <div className="crawl-text absolute w-full max-w-3xl text-center px-6 pb-24">
-          
-          <div className="mb-32 flex justify-center">
-            <h1 className="text-7xl md:text-[10rem] mb-8 tracking-wider font-black leading-none drop-shadow-[0_0_20px_rgba(229,9,20,0.4)]" 
-                style={{ 
-                  color: 'black', 
-                  WebkitTextStroke: '4px #E50914', 
-                  fontFamily: 'Impact, "Arial Black", sans-serif'
-                }}>
-              G.A.I.A
-            </h1>
-            {/* Mission temporarily removed */}
+        <div className="crawl-plane px-6">
+          <div className="crawl-text">
+            {contentBlock}
+            {contentBlock}
           </div>
-
-          {chapters.map((ch, i) => (
-            <div key={i} className="mb-24">
-              <h2 className="text-2xl md:text-4xl mb-2 font-bold tracking-[0.3em] text-[#FF2A2A] drop-shadow-[0_0_8px_rgba(255,42,42,0.5)]" style={{ fontFamily: "'Univers Light Ultra Condensed', 'Univers', sans-serif" }}>{ch.chapter}</h2>
-              <h3 className="text-xl md:text-3xl mb-8 font-bold tracking-[0.2em] text-[#FF2A2A]/80" style={{ fontFamily: "'Univers Light Ultra Condensed', 'Univers', sans-serif" }}>{ch.title}</h3>
-              <p className="text-xl md:text-3xl leading-relaxed text-[#F8F9FA] tracking-[0.1em] font-bold text-justify" style={{ textAlignLast: 'center', fontFamily: "'News Gothic Bold', 'News Gothic', sans-serif" }}>
-                {ch.desc}
-              </p>
-            </div>
-          ))}
-          
         </div>
       </div>
     </div>
