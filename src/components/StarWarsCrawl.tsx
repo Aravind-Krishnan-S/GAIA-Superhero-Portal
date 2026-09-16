@@ -58,16 +58,23 @@ export default function StarWarsCrawl() {
       <div className="perspective-container z-0">
         <div className="crawl-text absolute w-full max-w-3xl text-center px-6 pb-24">
           
-          <div className="mb-32">
-            <h1 className="text-5xl md:text-7xl mb-8 tracking-[0.4em] text-[#E50914] font-bold drop-shadow-[0_0_15px_rgba(229,9,20,0.8)]">G.A.I.A.</h1>
+          <div className="mb-32 flex justify-center">
+            <h1 className="text-7xl md:text-[10rem] mb-8 tracking-wider font-black leading-none drop-shadow-[0_0_20px_rgba(229,9,20,0.4)]" 
+                style={{ 
+                  color: 'black', 
+                  WebkitTextStroke: '4px #E50914', 
+                  fontFamily: 'Impact, "Arial Black", sans-serif'
+                }}>
+              G.A.I.A
+            </h1>
             {/* Mission temporarily removed */}
           </div>
 
           {chapters.map((ch, i) => (
             <div key={i} className="mb-24">
-              <h2 className="text-2xl md:text-4xl mb-2 font-bold tracking-[0.3em] text-[#E50914] drop-shadow-[0_0_8px_rgba(229,9,20,0.5)]">{ch.chapter}</h2>
-              <h3 className="text-xl md:text-3xl mb-8 font-bold tracking-[0.2em] text-[#E50914]/80">{ch.title}</h3>
-              <p className="text-xl md:text-3xl leading-relaxed text-[#F8F9FA] tracking-[0.1em] font-bold text-justify" style={{ textAlignLast: 'center' }}>
+              <h2 className="text-2xl md:text-4xl mb-2 font-bold tracking-[0.3em] text-[#FF2A2A] drop-shadow-[0_0_8px_rgba(255,42,42,0.5)]" style={{ fontFamily: "'Univers Light Ultra Condensed', 'Univers', sans-serif" }}>{ch.chapter}</h2>
+              <h3 className="text-xl md:text-3xl mb-8 font-bold tracking-[0.2em] text-[#FF2A2A]/80" style={{ fontFamily: "'Univers Light Ultra Condensed', 'Univers', sans-serif" }}>{ch.title}</h3>
+              <p className="text-xl md:text-3xl leading-relaxed text-[#F8F9FA] tracking-[0.1em] font-bold text-justify" style={{ textAlignLast: 'center', fontFamily: "'News Gothic Bold', 'News Gothic', sans-serif" }}>
                 {ch.desc}
               </p>
             </div>

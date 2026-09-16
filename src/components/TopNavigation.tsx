@@ -7,7 +7,6 @@ import { Terminal } from "lucide-react";
 export default function TopNavigation() {
   const [isDistressModalOpen, setIsDistressModalOpen] = useState(false);
 
-  const navItems = ["PLANET", "OPERATIVES", "ANOMALIES", "INTELLIGENCE", "ARCHIVE"];
 
   return (
     <>
@@ -27,20 +26,7 @@ export default function TopNavigation() {
             </div>
           </div>
 
-          {/* Minimal Navigation */}
-          <nav className="hidden md:flex flex-col gap-2 border-l border-[#E50914]/30 pl-4 ml-4">
-            {navItems.map((item) => (
-              <a 
-                key={item} 
-                href={`#${item.toLowerCase()}`}
-                className="text-[#F8F9FA] hover:text-[#E50914] hover:drop-shadow-[0_0_5px_rgba(229,9,20,0.8)] text-xs font-semibold tracking-widest transition-all uppercase flex items-center gap-2 group interactive"
-                data-hover={`[ACCESS ${item}]`}
-              >
-                <span className="opacity-0 group-hover:opacity-100 text-[#E50914] transition-opacity">&gt;</span>
-                [{item}]
-              </a>
-            ))}
-          </nav>
+
         </div>
 
         {/* Right: Actions */}
