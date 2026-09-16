@@ -56,7 +56,7 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
             ref={containerRef} 
-            className="relative min-h-screen text-[#F8F9FA] bg-[#050505] selection:bg-[#E50914] selection:text-[#050505] z-10 font-sans overflow-hidden cursor-none"
+            className="relative min-h-screen text-[#F8F9FA] bg-[#050505] selection:bg-[#E50914] selection:text-[#050505] z-10 font-sans overflow-x-hidden cursor-none"
           >
             
             {/* Massive Hero Section - Theatre Mode */}
