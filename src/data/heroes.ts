@@ -80,7 +80,7 @@ export const heroes: Hero[] = [
     role: "S-Class / Chaos Sorceress",
     image: "/dream_princess_v2.jpg",
     imagePosition: "top",
-    gallery: ["/images/nymeria.png", "/gallery_10_09_36.png"],
+    gallery: ["/images/nymeria.png", "/gallery_09_36_48.png"],
     backstory: "Born in a forgotten era, this young woman nearly fell victim to the brutal customs of her time. In her final moments of despair, her latent magical potential erupted, binding her to the fundamental forces of chaotic magic. Encased in a mystical hibernation, she awakened in the modern era. Now navigating a chaotic world with the eternal appearance of a woman in her 20s, she wields ancient, reality-bending crimson magic.",
     powerSystem: "Chaos Resonance. Her abilities are rooted in ancient chaotic energy, allowing her to manipulate reality, heal the wounded, and summon devastating crimson constructs.",
     skills: [
@@ -110,7 +110,7 @@ export const heroes: Hero[] = [
     name: "Angel",
     role: "A-Class / Umbral Operative",
     image: "/angel.png",
-    gallery: ["/ANGEL A-Pose.png", "/gallery_09_36_48.png", "/gallery_09_40_22.png"],
+    gallery: ["/ANGEL A-Pose.png", "/gallery_09_40_22.png"],
     backstory: "In her early 30s, Angel was already a top-tier espionage agent. During a black-site infiltration, she accidentally absorbed the essence of a bound Shadow Demon. She retained her humanity but gained monstrous abilities. Because manipulating shadows drains her physical stamina at an alarming rate, she requires an immense caloric intake to function, turning this lethal assassin into a massive foodie who knows all the best late-night diners in the city.",
     powerSystem: "Shadow Forging. Complete mastery over darkness, using it for both traversal and lethal combat.",
     skills: [
