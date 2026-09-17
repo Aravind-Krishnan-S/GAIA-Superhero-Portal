@@ -45,32 +45,7 @@ export default function DistressForm({ beacon, onClose, isVisible }: DistressFor
           to_email: email,
           reply_to: email,
           recipient_email: email,
-          html_message: `
-            <div style="font-family: 'Courier New', Courier, monospace; background-color: #050505; color: #F8F9FA; padding: 30px; border: 2px solid #E50914; max-width: 600px; margin: 0 auto; text-align: left;">
-              <div style="text-align: center; border-bottom: 2px solid rgba(229, 9, 20, 0.3); padding-bottom: 20px; margin-bottom: 20px;">
-                <h1 style="color: #E50914; margin: 0; font-size: 24px; letter-spacing: 4px; text-transform: uppercase;">G.A.I.A. Incident Report</h1>
-                <p style="color: #E50914; font-size: 12px; letter-spacing: 2px; margin-top: 5px;">STATUS: ANOMALY LOGGED & TRANSMITTED</p>
-              </div>
-              
-              <div style="margin-bottom: 20px; font-size: 14px; line-height: 1.8;">
-                <p style="margin: 5px 0;"><strong>OPERATIVE ID:</strong> <span style="color: #E50914;">${contact || 'Anonymous Operative'}</span></p>
-                <p style="margin: 5px 0;"><strong>INCIDENT TYPE:</strong> <span style="color: #E50914;">${incidentType}</span></p>
-                <p style="margin: 5px 0;"><strong>THREAT LEVEL:</strong> <span style="color: #E50914;">${threatLevel}</span></p>
-                <p style="margin: 5px 0;"><strong>COORDINATES:</strong> <span style="color: #E50914;">LAT ${beacon.lat.toFixed(4)} // LNG ${beacon.lng.toFixed(4)}</span></p>
-              </div>
-              
-              <div style="background-color: rgba(229, 9, 20, 0.1); padding: 15px; border-left: 3px solid #E50914; margin-bottom: 30px;">
-                <h3 style="color: #E50914; margin-top: 0; font-size: 14px; letter-spacing: 2px;">TACTICAL ASSESSMENT</h3>
-                <p style="font-size: 14px; line-height: 1.5; margin-bottom: 0;">${description}</p>
-              </div>
-              
-              <div style="text-align: center; margin-top: 40px;">
-                <a href="${window.location.origin}" style="display: inline-block; background-color: #E50914; color: #050505; padding: 12px 25px; text-decoration: none; font-weight: bold; letter-spacing: 2px; font-size: 14px; border: 1px solid #E50914;">
-                  ACCESS G.A.I.A. TERMINAL
-                </a>
-              </div>
-            </div>
-          `,
+          html_message: `<div style="font-family: 'Courier New', Courier, monospace; background-color: #050505; color: #F8F9FA; padding: 30px; border: 2px solid #E50914; max-width: 600px; margin: 0 auto; text-align: left;"><div style="text-align: center; border-bottom: 2px solid rgba(229, 9, 20, 0.3); padding-bottom: 20px; margin-bottom: 20px;"><h1 style="color: #E50914; margin: 0; font-size: 24px; letter-spacing: 4px; text-transform: uppercase;">G.A.I.A. Incident Report</h1><p style="color: #E50914; font-size: 12px; letter-spacing: 2px; margin-top: 5px;">STATUS: ANOMALY LOGGED & TRANSMITTED</p></div><div style="margin-bottom: 20px; font-size: 14px; line-height: 1.8;"><p style="margin: 5px 0;"><strong>OPERATIVE ID:</strong> <span style="color: #E50914;">${contact || 'Anonymous Operative'}</span></p><p style="margin: 5px 0;"><strong>INCIDENT TYPE:</strong> <span style="color: #E50914;">${incidentType}</span></p><p style="margin: 5px 0;"><strong>THREAT LEVEL:</strong> <span style="color: #E50914;">${threatLevel}</span></p><p style="margin: 5px 0;"><strong>COORDINATES:</strong> <span style="color: #E50914;">LAT ${beacon.lat.toFixed(4)} // LNG ${beacon.lng.toFixed(4)}</span></p></div><div style="background-color: rgba(229, 9, 20, 0.1); padding: 15px; border-left: 3px solid #E50914; margin-bottom: 30px;"><h3 style="color: #E50914; margin-top: 0; font-size: 14px; letter-spacing: 2px;">TACTICAL ASSESSMENT</h3><p style="font-size: 14px; line-height: 1.5; margin-bottom: 0;">${description}</p></div><div style="text-align: center; margin-top: 40px;"><a href="${window.location.origin}" style="display: inline-block; background-color: #E50914; color: #050505; padding: 12px 25px; text-decoration: none; font-weight: bold; letter-spacing: 2px; font-size: 14px; border: 1px solid #E50914;">ACCESS G.A.I.A. TERMINAL</a></div></div>`,
           title: `[${threatLevel}] ${incidentType} at ${beacon.lat.toFixed(4)}, ${beacon.lng.toFixed(4)}`,
           description: description,
           severity: threatLevel
