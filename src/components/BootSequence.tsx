@@ -1,23 +1,17 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
-const BOOT_MESSAGES = [
-  "INITIALIZING GLOBAL ANOMALY NETWORK...",
-  "ESTABLISHING SECURE CHANNEL...",
-  "GEO-AI CORE: ONLINE",
-  "PLANETARY TELEMETRY: SYNCHRONIZED",
-  "G.A.I.A. CONNECTION: ESTABLISHED",
-];
 
 interface BootSequenceProps {
   onComplete: () => void;
 }
 
 export default function BootSequence({ onComplete }: BootSequenceProps) {
-  const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
   const [isBooting, setIsBooting] = useState(true);
+  const [hasInteracted, setHasInteracted] = useState(false);
+  const [isPulsing, setIsPulsing] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     // Check if we've already booted in this session to prevent annoyance
@@ -27,24 +21,31 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
       onComplete();
       return;
     }
-
-    let currentIndex = 0;
-    const interval = setInterval(() => {
-      currentIndex++;
-      if (currentIndex < BOOT_MESSAGES.length) {
-        setCurrentMessageIndex(currentIndex);
-      } else {
-        clearInterval(interval);
-        setTimeout(() => {
-          setIsBooting(false);
-          sessionStorage.setItem("gaia_booted", "true");
-          onComplete();
-        }, 1500);
-      }
-    }, 1200);
-
-    return () => clearInterval(interval);
   }, [onComplete]);
+
+  const handleVideoEnd = () => {
+    setIsBooting(false);
+    sessionStorage.setItem("gaia_booted", "true");
+    onComplete();
+  };
+
+  const handleSkip = () => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
+    handleVideoEnd();
+  };
+
+  const startSequence = () => {
+    setIsPulsing(true);
+    if (videoRef.current) {
+      videoRef.current.play().catch(console.error);
+    }
+    
+    setTimeout(() => {
+      setHasInteracted(true);
+    }, 800);
+  };
 
   if (!isBooting) return null;
 
@@ -55,49 +56,47 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
           key="boot-sequence"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, transition: { duration: 1.5, ease: "easeInOut" } }}
-          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#050505] text-[#E50914] font-mono cursor-none"
+          className="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center cursor-default"
         >
-          <div className="w-full max-w-2xl px-8 relative">
-            
-            {/* Terminal Window Frame */}
-            <div className="border border-[#E50914]/20 p-8 relative shadow-[0_0_20px_rgba(229,9,20,0.1)]">
-              {/* Corner Accents */}
-              <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#E50914]" />
-              <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-[#E50914]" />
-              <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-[#E50914]" />
-              <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-[#E50914]" />
-              
-              <div className="flex items-center gap-4 mb-8 border-b border-[#E50914]/20 pb-4">
-                <div className="w-3 h-3 bg-[#E50914] animate-pulse shadow-[0_0_8px_#E50914]" />
-                <span className="text-sm tracking-widest opacity-80">G.A.I.A. TERMINAL V4.2</span>
-              </div>
-              
-              <div className="space-y-4">
-                {BOOT_MESSAGES.map((msg, idx) => (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ 
-                      opacity: idx <= currentMessageIndex ? 1 : 0,
-                      x: idx <= currentMessageIndex ? 0 : -20 
-                    }}
-                    transition={{ duration: 0.3 }}
-                    className="flex items-center gap-3 text-sm md:text-base tracking-widest drop-shadow-[0_0_5px_rgba(229,9,20,0.5)]"
-                  >
-                    <span className="opacity-50">&gt;</span>
-                    <span className={idx === currentMessageIndex ? "animate-pulse" : ""}>
-                      {msg}
-                    </span>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-            
-          </div>
+          <video
+            ref={videoRef}
+            src="/videos/intro_v3.mp4"
+            playsInline
+            onEnded={handleVideoEnd}
+            className={`w-full h-full object-cover transition-opacity duration-1000 ${hasInteracted ? 'opacity-100' : 'opacity-0'}`}
+          />
           
-          <div className="absolute bottom-10 text-xs opacity-30 tracking-widest">
-            AUTHORIZED PERSONNEL ONLY
-          </div>
+          {!hasInteracted && (
+            <div className="absolute inset-0 flex items-center justify-center bg-black z-10 overflow-hidden">
+              <motion.button 
+                animate={isPulsing ? { scale: 1.5, opacity: 0, filter: "brightness(2)" } : {}}
+                transition={{ duration: 0.4 }}
+                disabled={isPulsing}
+                onClick={startSequence}
+                className="interactive px-8 py-4 bg-[#E50914] text-white font-mono font-bold tracking-[0.2em] hover:bg-[#c40812] transition-all rounded-md shadow-[0_0_20px_rgba(229,9,20,0.5)] cursor-pointer z-20 relative"
+              >
+                [ ESTABLISH CONNECTION ]
+              </motion.button>
+              
+              {isPulsing && (
+                <motion.div
+                  initial={{ width: "0%", opacity: 1, scaleY: 1 }}
+                  animate={{ width: "100%", opacity: 0, scaleY: 4 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                  className="absolute h-[2px] bg-white shadow-[0_0_40px_10px_rgba(229,9,20,1)] rounded-full z-10"
+                />
+              )}
+            </div>
+          )}
+
+          {hasInteracted && (
+            <button 
+              onClick={handleSkip}
+              className="absolute bottom-8 right-8 text-[#F8F9FA] border border-[#F8F9FA]/30 bg-black/50 px-4 py-2 text-xs tracking-widest hover:bg-white/10 transition-colors z-50 cursor-pointer backdrop-blur-sm rounded-md"
+            >
+              [SKIP]
+            </button>
+          )}
         </motion.div>
       )}
     </AnimatePresence>

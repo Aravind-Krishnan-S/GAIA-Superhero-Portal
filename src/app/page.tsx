@@ -11,7 +11,7 @@ export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isBooted, setIsBooted] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
   
   useEffect(() => {
     // If already booted in session, skip animation
@@ -19,6 +19,12 @@ export default function Home() {
       setIsBooted(true);
     }
   }, []);
+
+  useEffect(() => {
+    if (isBooted && audioRef.current && !isMuted) {
+      audioRef.current.play().catch(e => console.log("Audio play blocked", e));
+    }
+  }, [isBooted, isMuted]);
 
   useEffect(() => {
     const handleToggleAudio = () => {
@@ -97,7 +103,7 @@ export default function Home() {
               </motion.div>
 
               {/* Star Wars Crawl Animation in Background */}
-              <div className="absolute inset-0 z-[5] pointer-events-none">
+              <div className="absolute inset-0 z-[5]">
                 <StarWarsCrawl />
               </div>
             </section>
@@ -112,7 +118,7 @@ export default function Home() {
                 className="max-w-7xl mx-auto px-8 md:px-16 mb-16"
               >
                  <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-[#F8F9FA] mb-4 font-mono">
-                   Active <span className="text-[#E50914]">Roster</span>
+                   Hero <span className="text-[#E50914]">Roster</span>
                  </h2>
                  <p className="text-[#F8F9FA] font-mono text-sm">Classified profiles of our most effective operatives.</p>
               </motion.div>

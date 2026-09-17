@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import emailjs from '@emailjs/browser';
 import { Terminal, X, Minus, Square, Volume2, VolumeX } from "lucide-react";
@@ -92,7 +93,7 @@ export default function AndroidTerminal() {
     setTimeout(() => {
       addAndroidMessage("INITIALIZING UPLINK...");
       setTimeout(() => {
-        addAndroidMessage("Uplink established. Hey! I'm Android. Well, my robot is... I'm actually in my server room right now. What's up?");
+        addAndroidMessage("Uplink established. I am A.N.D.R.O.I.D. V-1, a personal assistant created by Operative Android to manage team operations. How may I assist you?");
         setTimeout(() => {
           addAndroidMessage("You can ask me about our [Operatives], the [G.A.I.A.] charter, or if you're in trouble, type [Report] to file a distress beacon.");
         }, 3000);
@@ -139,7 +140,7 @@ export default function AndroidTerminal() {
 
       if (lowerVal.includes("operative") || lowerVal.includes("superhero") || lowerVal.includes("heroes")) {
         setTimeout(() => {
-          addAndroidMessage("Our active roster has 4 Operatives: Spectre, Dream Princess, Angel, and me (Android). Well, my robot. I just sit in my ergonomic chair. You can ask me about any of them!");
+          addAndroidMessage("Our Hero Roster has 4 Operatives: Spectre, Nymeria, Angel, and my creator, Android. You can ask me about any of them!");
         }, 600);
         return;
       }
@@ -260,7 +261,7 @@ export default function AndroidTerminal() {
             <div className="bg-[#050505] border-b border-[#E50914]/30 px-4 py-3 flex justify-between items-center cursor-move select-none">
               <div className="flex items-center gap-2 text-[#E50914]/80 text-xs font-mono tracking-widest">
                 <Terminal size={14} className="text-[#E50914]" />
-                <span>android@gaia:~/comms</span>
+                <span>v1-assistant@gaia:~/comms</span>
               </div>
               <div className="flex items-center gap-4 text-[#E50914]/70">
                 <button 
@@ -283,13 +284,19 @@ export default function AndroidTerminal() {
                 <div className="flex-1 overflow-y-auto p-5 flex flex-col gap-4 terminal-scroll bg-[linear-gradient(rgba(229,9,20,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(229,9,20,0.03)_1px,transparent_1px)] bg-[size:20px_20px]">
                   {messages.map((msg, i) => (
                     <div key={i} className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}>
-                      <div className={`max-w-[85%] px-4 py-2 rounded-sm ${
-                        msg.sender === "user" 
-                          ? "bg-[#E50914]/10 text-[#F8F9FA] border border-[#E50914]/20 rounded-tr-none" 
-                          : "bg-[#050505] text-[#E50914] border border-[#E50914]/10 shadow-[0_2px_10px_rgba(229,9,20,0.05)] rounded-tl-none leading-relaxed"
-                      }`}>
-                        {msg.sender === "android" && <span className="opacity-50 mr-2 text-xs font-bold">{">"}</span>}
-                        {msg.text}
+                      <div className="flex gap-2 items-start max-w-[85%]">
+                        {msg.sender === "android" && (
+                          <div className="w-8 h-8 rounded-full overflow-hidden border border-[#E50914]/50 relative shrink-0 bg-[#E50914]/10 flex items-center justify-center mt-1">
+                            <Image src="/chatbot-avatar.png" alt="A.N.D.R.O.I.D. V-1" fill className="object-cover p-[2px]" />
+                          </div>
+                        )}
+                        <div className={`px-4 py-2 rounded-sm ${
+                          msg.sender === "user" 
+                            ? "bg-[#E50914]/10 text-[#F8F9FA] border border-[#E50914]/20 rounded-tr-none ml-auto" 
+                            : "bg-[#050505] text-[#E50914] border border-[#E50914]/10 shadow-[0_2px_10px_rgba(229,9,20,0.05)] rounded-tl-none leading-relaxed"
+                        }`}>
+                          {msg.text}
+                        </div>
                       </div>
                     </div>
                   ))}

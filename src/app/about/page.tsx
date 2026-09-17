@@ -79,7 +79,7 @@ export default function AboutPage() {
               </div>
 
               <div className="p-4 border border-[#F8F9FA]/10 bg-[#050505]">
-                <h3 className="text-[#E50914] font-bold tracking-widest mb-2">DREAM PRINCESS</h3>
+                <h3 className="text-[#E50914] font-bold tracking-widest mb-2">NYMERIA</h3>
                 <p className="text-xs text-[#F8F9FA]/70 leading-relaxed">
                   A chaos sorceress whose reality-bending magic is often deployed to counter hyper-advanced alien technologies and extraterrestrial psychic warfare.
                 </p>

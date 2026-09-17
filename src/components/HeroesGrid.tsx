@@ -15,14 +15,8 @@ export default function HeroesGrid() {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(229,9,20,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(229,9,20,0.02)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        <div className="flex items-center gap-4 mb-12 border-b border-[#E50914]/30 pb-4">
-          <FileText className="text-[#E50914] w-6 h-6" />
-          <h2 className="text-xl md:text-2xl font-bold text-[#E50914] tracking-[0.2em] uppercase">
-            PERSONNEL ARCHIVE // OPERATIVES
-          </h2>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
           {heroes.map((hero, index) => (
             <div 
               key={hero.id}
@@ -70,12 +64,7 @@ export default function HeroesGrid() {
                 {/* Scanline Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#E50914]/10 to-transparent opacity-0 group-hover:opacity-100 animate-[translate_2s_infinite_linear] pointer-events-none" style={{ animationName: 'scanVertical' }} />
                 
-                {/* Status Badge */}
-                <div className={`absolute top-4 right-4 text-[10px] tracking-widest px-2 py-1 border backdrop-blur-md z-20 ${
-                  hero.isClassified ? "bg-[#E50914]/10 border-[#E50914] text-[#E50914]" : "bg-[#E50914]/10 border-[#E50914] text-[#E50914]"
-                }`}>
-                  {hero.isClassified ? "REDACTED" : "ACTIVE"}
-                </div>
+
               </div>
               
               {/* Intelligence Data Section */}

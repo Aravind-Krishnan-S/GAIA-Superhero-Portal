@@ -23,7 +23,7 @@ export default function StarWarsCrawl() {
     {
       chapter: "CHAPTER III",
       title: "OUR ELITE ROSTER",
-      desc: "To defend our world, G.A.I.A. commands an elite roster of extraordinary operatives. While Spectre slumbers as our ultimate insurance, Dream Princess wields cosmic light and psychic shielding. Angel strikes with divine swiftness from the atmosphere, and Android, the pinnacle of cybernetics, coordinates operations and our vast intelligence networks."
+      desc: "To defend our world, G.A.I.A. commands an elite roster of extraordinary operatives. While Spectre slumbers as our ultimate insurance, Nymeria wields cosmic light and psychic shielding. Angel strikes with divine swiftness from the atmosphere, and Android, the pinnacle of cybernetics, coordinates operations and our vast intelligence networks."
     },
     {
       chapter: "CHAPTER IV",
@@ -62,6 +62,7 @@ export default function StarWarsCrawl() {
 
   const y = useMotionValue(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const [contentHeight, setContentHeight] = useState(0);
   const isInteracting = useRef(false);
   const [startPos, setStartPos] = useState(0);
@@ -75,6 +76,21 @@ export default function StarWarsCrawl() {
     y.set(initialPos);
   }, [y]);
 
+  // Handle scroll isolation
+  useEffect(() => {
+    const el = wrapperRef.current;
+    if (!el) return;
+
+    const handleNativeWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      if (!contentHeight) return;
+      y.set(y.get() - e.deltaY);
+    };
+
+    el.addEventListener("wheel", handleNativeWheel, { passive: false });
+    return () => el.removeEventListener("wheel", handleNativeWheel);
+  }, [contentHeight, y]);
+
   // Handle seamless wrapping on any change to y
   useMotionValueEvent(y, "change", (latest) => {
     if (!contentHeight) return;
@@ -87,20 +103,14 @@ export default function StarWarsCrawl() {
 
   useAnimationFrame((time, delta) => {
     if (!contentHeight || isInteracting.current) return;
-    // Base speed: moves contentHeight in 100,000 ms (100 seconds)
-    const speed = contentHeight / 100000;
+    // Base speed: moves contentHeight in 100,000 ms (100 seconds), multiplied by 1.3 for 30% speedup
+    const speed = (contentHeight / 100000) * 1.3;
     y.set(y.get() - speed * delta);
   });
-
-  const handleWheel = (e: React.WheelEvent) => {
-    if (!contentHeight) return;
-    y.set(y.get() - e.deltaY);
-  };
 
   return (
     <div 
       className="absolute inset-x-0 top-0 h-[80vh] overflow-hidden flex items-end justify-center font-mono z-0"
-      onWheel={handleWheel}
       onPointerDown={() => isInteracting.current = true}
       onPointerUp={() => isInteracting.current = false}
       onPointerLeave={() => isInteracting.current = false}
@@ -136,7 +146,7 @@ export default function StarWarsCrawl() {
       <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-[#050505] via-[#050505]/80 to-transparent z-10 pointer-events-none" />
 
       <div className="perspective-container z-0">
-        <div className="crawl-plane px-6">
+        <div ref={wrapperRef} className="crawl-plane px-6">
           <motion.div 
             ref={containerRef}
             className="crawl-text cursor-grab active:cursor-grabbing"

@@ -7,7 +7,7 @@ import { Volume2, VolumeX } from "lucide-react";
 
 export default function TopNavigation() {
   const [isDistressModalOpen, setIsDistressModalOpen] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
     const handleAudioState = (e: any) => {
@@ -46,7 +46,7 @@ export default function TopNavigation() {
             {/* Audio Toggle */}
             <button 
               onClick={toggleAudio}
-              className="interactive p-1.5 bg-[#050505]/80 backdrop-blur-md border border-[#E50914]/50 text-[#E50914] hover:bg-[#E50914]/20 hover:border-[#E50914] transition-all flex items-center justify-center shadow-[0_0_10px_rgba(229,9,20,0.2)] hover:shadow-[0_0_15px_rgba(229,9,20,0.5)]"
+              className="interactive p-2 bg-[#E50914] text-white rounded-md hover:bg-[#c40812] transition-colors shadow-md flex items-center justify-center"
               aria-label="Toggle Audio"
             >
               {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
@@ -55,7 +55,7 @@ export default function TopNavigation() {
             {/* About GAIA */}
             <Link 
               href="/about"
-              className="interactive px-4 py-1.5 bg-[#050505]/80 backdrop-blur-md border border-[#E50914]/50 text-[#E50914] text-xs tracking-widest hover:bg-[#E50914]/20 hover:border-[#E50914] transition-all flex items-center gap-2 shadow-[0_0_10px_rgba(229,9,20,0.2)] hover:shadow-[0_0_15px_rgba(229,9,20,0.5)]"
+              className="interactive px-4 py-2 bg-[#E50914] text-white font-bold text-sm rounded-md hover:bg-[#c40812] transition-colors shadow-md flex items-center justify-center"
             >
               [ABOUT G.A.I.A.]
             </Link>
@@ -63,15 +63,15 @@ export default function TopNavigation() {
             {/* Contact GAIA */}
             <Link 
               href="/contact"
-              className="interactive px-4 py-1.5 bg-[#050505]/80 backdrop-blur-md border border-[#E50914]/50 text-[#E50914] text-xs tracking-widest hover:bg-[#E50914]/20 hover:border-[#E50914] transition-all flex items-center gap-2 shadow-[0_0_10px_rgba(229,9,20,0.2)] hover:shadow-[0_0_15px_rgba(229,9,20,0.5)]"
+              className="interactive px-4 py-2 bg-[#E50914] text-white font-bold text-sm rounded-md hover:bg-[#c40812] transition-colors shadow-md flex items-center justify-center"
             >
-              [CONTACT]
+              [AUTOBOT]
             </Link>
             
             {/* Transmit Distress */}
             <button 
               onClick={() => setIsDistressModalOpen(true)}
-              className="interactive px-4 py-1.5 bg-[#050505]/80 backdrop-blur-md border border-[#E50914]/50 text-[#E50914] text-xs tracking-widest hover:bg-[#E50914]/20 hover:border-[#E50914] transition-all flex items-center gap-2 shadow-[0_0_10px_rgba(229, 9, 20,0.2)] hover:shadow-[0_0_15px_rgba(229, 9, 20,0.5)]"
+              className="interactive px-4 py-2 bg-[#E50914] text-white font-bold text-sm rounded-md hover:bg-[#c40812] transition-colors shadow-md flex items-center justify-center"
             >
               [TRANSMIT DISTRESS]
             </button>

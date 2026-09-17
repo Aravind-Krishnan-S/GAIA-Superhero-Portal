@@ -31,7 +31,7 @@ The **G.A.I.A. Superhero Portal** is an interactive, high-tech web application d
 - Serves as the high-tech, futuristic background for the main portal.
 
 ### 4. `src/components/HeroesGrid.tsx`
-- Displays the active roster of **G.A.I.A. Operatives** (e.g., Iron Man, Captain America, Thor).
+- Displays the Hero Roster of **G.A.I.A. Operatives** (e.g., Iron Man, Captain America, Thor).
 - Features premium UI cards with cyan borders, glassmorphic backgrounds (`bg-[#050b14]/40 backdrop-blur-md`), and glowing hover effects.
 - Includes an **expandable Dossier (Theatre Mode)** that takes up the full width, showing detailed stories, missions, and goals for each operative when clicked.
 
