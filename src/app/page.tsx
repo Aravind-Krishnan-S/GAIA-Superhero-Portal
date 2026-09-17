@@ -88,8 +88,34 @@ export default function Home() {
             className="relative min-h-screen text-[#F8F9FA] bg-[#050505] selection:bg-[#E50914] selection:text-[#050505] z-10 font-sans overflow-x-hidden cursor-none"
           >
             
+            {/* Roster Grid Section */}
+            <section className="relative z-20 bg-[#050505] w-full pt-24 pb-16 cursor-none min-h-screen flex flex-col justify-center">
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="max-w-7xl mx-auto px-8 md:px-16 mb-12"
+              >
+                 <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-[#F8F9FA] mb-4 font-mono">
+                   Hero <span className="text-[#E50914]">Roster</span>
+                 </h2>
+                 <p className="text-[#F8F9FA] font-mono text-sm">Classified profiles of our most effective operatives.</p>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 1, delay: 0.2 }}
+                className="interactive flex-grow flex flex-col"
+              >
+                <HeroesGrid />
+              </motion.div>
+            </section>
+
             {/* Massive Hero Section - Theatre Mode */}
-            <section className="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden border-b border-[#050505]">
+            <section className="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden border-t border-[#050505]">
               
               {/* Full-bleed Parallax Background */}
               <motion.div 
@@ -103,32 +129,6 @@ export default function Home() {
               <div className="absolute inset-0 z-[5]">
                 <StarWarsCrawl />
               </div>
-            </section>
-            
-            {/* Roster Grid Section */}
-            <section className="relative z-20 bg-[#050505] w-full pt-24 pb-32 cursor-none">
-              <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="max-w-7xl mx-auto px-8 md:px-16 mb-16"
-              >
-                 <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-[#F8F9FA] mb-4 font-mono">
-                   Hero <span className="text-[#E50914]">Roster</span>
-                 </h2>
-                 <p className="text-[#F8F9FA] font-mono text-sm">Classified profiles of our most effective operatives.</p>
-              </motion.div>
-              
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 1, delay: 0.2 }}
-                className="interactive"
-              >
-                <HeroesGrid />
-              </motion.div>
             </section>
 
           </motion.div>
