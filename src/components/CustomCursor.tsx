@@ -45,11 +45,11 @@ export default function CustomCursor() {
     };
 
     window.addEventListener("mousemove", moveCursor);
-    window.addEventListener("mouseover", handleMouseOver);
+    window.addEventListener("mouseover", handleMouseOver, true);
 
     return () => {
       window.removeEventListener("mousemove", moveCursor);
-      window.removeEventListener("mouseover", handleMouseOver);
+      window.removeEventListener("mouseover", handleMouseOver, true);
     };
   }, [cursorX, cursorY]);
 

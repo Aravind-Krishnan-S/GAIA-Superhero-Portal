@@ -27,6 +27,7 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
     setIsBooting(false);
     sessionStorage.setItem("gaia_booted", "true");
     onComplete();
+    window.dispatchEvent(new CustomEvent("boot-complete"));
   };
 
   const handleSkip = () => {

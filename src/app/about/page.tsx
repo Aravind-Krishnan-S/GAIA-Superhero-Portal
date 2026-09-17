@@ -73,16 +73,19 @@ export default function AboutPage() {
               
               <div className="p-4 border border-[#F8F9FA]/10 bg-[#050505]">
                 <h3 className="text-[#E50914] font-bold tracking-widest mb-2">SPECTRE</h3>
-                <p className="text-xs text-[#F8F9FA]/70 leading-relaxed">
+                <p className="text-xs text-[#F8F9FA]/70 leading-relaxed mb-4">
                   A shadow-ops specialist handling off-the-books corporate sabotage. When a rival alien company tries to establish an illegal foothold on Earth, Spectre ensures their executives disappear.
                 </p>
+
+
               </div>
 
-              <div className="p-4 border border-[#F8F9FA]/10 bg-[#050505]">
+              <div className="p-4 border border-[#F8F9FA]/10 bg-[#050505] flex flex-col">
                 <h3 className="text-[#E50914] font-bold tracking-widest mb-2">NYMERIA</h3>
-                <p className="text-xs text-[#F8F9FA]/70 leading-relaxed">
+                <p className="text-xs text-[#F8F9FA]/70 leading-relaxed mb-4">
                   A chaos sorceress whose reality-bending magic is often deployed to counter hyper-advanced alien technologies and extraterrestrial psychic warfare.
                 </p>
+
               </div>
 
               <div className="p-4 border border-[#F8F9FA]/10 bg-[#050505]">
@@ -92,11 +95,12 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="p-4 border border-[#F8F9FA]/10 bg-[#050505]">
+              <div className="p-4 border border-[#F8F9FA]/10 bg-[#050505] flex flex-col">
                 <h3 className="text-[#E50914] font-bold tracking-widest mb-2">ANDROID</h3>
-                <p className="text-xs text-[#F8F9FA]/70 leading-relaxed">
+                <p className="text-xs text-[#F8F9FA]/70 leading-relaxed mb-4">
                   The pinnacle of G.A.I.A.'s R&D—a fusion of cutting-edge Earth robotics and scavenged alien technology, designed to handle heavy combat and infiltrate extraterrestrial corporate mainframes.
                 </p>
+
               </div>
 
             </div>

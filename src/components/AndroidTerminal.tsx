@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import emailjs from '@emailjs/browser';
 import { Terminal, X, Minus, Square, Volume2, VolumeX } from "lucide-react";
 import { heroes } from "@/data/heroes";
+import SciFiPanel from "./SciFiPanel";
 
 type Message = { sender: "android" | "user"; text: string };
 type Step = "CHAT" | "REPORT_NAME" | "REPORT_EMAIL" | "REPORT_GRIEVANCE" | "DONE";
@@ -101,6 +102,13 @@ export default function AndroidTerminal() {
     }, 500);
   };
 
+  const handleCloseTerminal = () => {
+    setIsOpen(false);
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim()) return;
@@ -147,7 +155,7 @@ export default function AndroidTerminal() {
 
       // Check for Hero queries
       for (const hero of heroes) {
-        if (lowerVal.includes(hero.name.toLowerCase()) || (hero.id === "dream-princess" && lowerVal.includes("princess"))) {
+        if (lowerVal.includes(hero.name.toLowerCase()) || (hero.id === "nymeria" && lowerVal.includes("princess"))) {
           setTimeout(() => {
             addAndroidMessage(`Accessing file: ${hero.name.toUpperCase()}...`);
             setTimeout(() => {
@@ -248,10 +256,11 @@ export default function AndroidTerminal() {
       {/* Terminal Window */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            className={`fixed right-4 sm:right-6 z-50 bg-[#050505]/95 backdrop-blur-xl border border-[#E50914]/40 shadow-[0_0_40px_rgba(229,9,20,0.15)] rounded-lg overflow-hidden flex flex-col font-mono text-sm sm:text-base ${
+          <SciFiPanel
+            className={`fixed right-4 sm:right-6 z-50 ${
               isMinimized ? "bottom-4 sm:bottom-6 w-72 h-12" : "bottom-4 sm:bottom-6 w-[92vw] sm:w-[450px] h-[600px] max-h-[85vh]"
             }`}
+            innerClassName="flex flex-col font-mono text-sm sm:text-base"
             initial={{ opacity: 0, y: 50, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 50, scale: 0.95 }}
@@ -274,7 +283,7 @@ export default function AndroidTerminal() {
                 <div className="w-px h-4 bg-[#E50914]/30"></div>
                 <button onClick={() => setIsMinimized(!isMinimized)} className="hover:text-[#E50914] transition-colors"><Minus size={16} /></button>
                 <button onClick={() => setIsMinimized(false)} className="hover:text-[#E50914] transition-colors"><Square size={14} /></button>
-                <button onClick={() => setIsOpen(false)} className="hover:text-red-500 transition-colors ml-1"><X size={16} /></button>
+                <button onClick={handleCloseTerminal} className="hover:text-red-500 transition-colors ml-1"><X size={16} /></button>
               </div>
             </div>
 
@@ -326,7 +335,7 @@ export default function AndroidTerminal() {
                 </div>
               </>
             )}
-          </motion.div>
+          </SciFiPanel>
         )}
       </AnimatePresence>
     </>

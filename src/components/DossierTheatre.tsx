@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from "recharts";
 import { Hero, heroes } from "@/data/heroes";
 import { X, ShieldAlert, Terminal, Activity, ChevronDown, ChevronUp, Trophy, Zap, TriangleAlert, Image as ImageIcon } from "lucide-react";
+import SciFiPanel from "./SciFiPanel";
 
 interface DossierTheatreProps {
   hero: Hero | null;
@@ -56,14 +57,13 @@ export default function DossierTheatre({ hero, onClose }: DossierTheatreProps) {
           />
 
           {/* Main Container */}
-          <motion.div 
+          <SciFiPanel 
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.98 }}
             transition={{ duration: 0.3 }}
-            className={`relative w-full h-full md:max-w-[95vw] md:h-[90vh] bg-[#050505]/80 border shadow-[0_0_50px_rgba(229,9,20,0.15)] overflow-hidden flex flex-col md:flex-row z-10 ${
-              activeHero.isClassified ? "border-[#E50914]/50" : "border-[#E50914]/50"
-            }`}
+            className="relative w-full h-full md:max-w-[95vw] md:h-[90vh] z-10"
+            innerClassName="overflow-hidden flex flex-col md:flex-row"
           >
             {/* Close Button */}
             <button 
@@ -288,10 +288,15 @@ export default function DossierTheatre({ hero, onClose }: DossierTheatreProps) {
                            className="overflow-hidden"
                          >
                            <div className="p-3 border-t border-[#E50914]/30 bg-[#E50914]/5">
-                             {activeHero.gallery && activeHero.gallery.length > 0 ? (
-                               <div className="grid grid-cols-2 gap-2">
-                                 {activeHero.gallery.map((imgSrc, idx) => (
-                                   <div key={idx} className="relative aspect-square border border-[#E50914]/30 overflow-hidden hover:border-[#E50914] transition-colors group">
+                             {activeHero.galleryNote && (
+                               <div className="text-[10px] text-[#E50914] font-mono tracking-wider italic uppercase mb-3 p-2 bg-[#E50914]/10 border-l-2 border-[#E50914]/50">
+                                 {activeHero.galleryNote}
+                               </div>
+                             )}
+                              {activeHero.gallery && activeHero.gallery.length > 0 ? (
+                                <div className="flex flex-col gap-4 max-h-[400px] overflow-y-auto custom-scrollbar pr-2">
+                                  {activeHero.gallery.map((imgSrc, idx) => (
+                                    <div key={idx} className="relative w-full aspect-square md:aspect-video border border-[#E50914]/30 overflow-hidden hover:border-[#E50914] transition-colors group shrink-0">
                                      <Image 
                                        src={imgSrc} 
                                        alt={`${activeHero.name} gallery image ${idx + 1}`}
@@ -314,11 +319,12 @@ export default function DossierTheatre({ hero, onClose }: DossierTheatreProps) {
 
                  </div>
 
+                 <div className="h-8 shrink-0 w-full" />
                </div>
             </div>
 
             {/* Right Column: Radar & Attributes */}
-            <div className="flex-1 bg-[#050505] flex flex-col p-6 overflow-y-auto custom-scrollbar relative">
+            <div className="flex-1 bg-[#050505] flex flex-col p-6 pt-14 overflow-y-auto custom-scrollbar relative">
               <h3 className="text-[10px] text-[#F8F9FA] tracking-widest mb-4 border-b border-[#E50914]/30 pb-1 text-center">
                 TACTICAL_ATTRIBUTES
               </h3>
@@ -326,9 +332,9 @@ export default function DossierTheatre({ hero, onClose }: DossierTheatreProps) {
               <div className="w-full h-[250px] md:h-[300px] relative mb-6 shrink-0">
 
                 <ResponsiveContainer width="100%" height="100%">
-                  <RadarChart cx="50%" cy="50%" outerRadius="65%" data={activeHero.stats}>
+                  <RadarChart cx="50%" cy="50%" outerRadius="40%" data={activeHero.stats}>
                     <PolarGrid stroke="#E5091440" />
-                    <PolarAngleAxis dataKey="subject" tick={{ fill: '#F8F9FA', fontSize: 10, fontFamily: 'monospace' }} />
+                    <PolarAngleAxis dataKey="subject" tick={{ fill: '#F8F9FA', fontSize: 9, fontFamily: 'monospace' }} />
                     <PolarRadiusAxis angle={30} domain={[0, 10]} tick={false} axisLine={false} />
                     <Radar
                       name={activeHero.name}
@@ -351,9 +357,10 @@ export default function DossierTheatre({ hero, onClose }: DossierTheatreProps) {
                   </div>
                 ))}
               </div>
+              <div className="h-8 shrink-0 w-full" />
             </div>
             
-          </motion.div>
+          </SciFiPanel>
         </div>
       )}
     </AnimatePresence>,

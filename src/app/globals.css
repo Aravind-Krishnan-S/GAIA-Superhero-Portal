@@ -166,3 +166,18 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(229, 9, 20, 0.5);
 }
+
+/* Custom Transparent Leaflet Popup for DistressForm */
+.custom-popup-wrapper .leaflet-popup-content-wrapper {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+  border-radius: 0;
+}
+.custom-popup-wrapper .leaflet-popup-content {
+  margin: 0;
+  width: auto !important;
+}
+.custom-popup-wrapper .leaflet-popup-tip-container {
+  display: none;
+}

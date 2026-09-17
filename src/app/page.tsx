@@ -45,18 +45,15 @@ export default function Home() {
   }, [isMuted]);
 
   // Setup Parallax for Hero Background
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"]
-  });
+  const { scrollY } = useScroll();
 
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const backgroundY = useTransform(scrollY, [0, 800], ["0%", "50%"]);
+  // Fade out opacity by 600px of scroll
+  const opacity = useTransform(scrollY, [0, 600], [1, 0]);
 
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+  useMotionValueEvent(opacity, "change", (latest) => {
     if (audioRef.current && !isMuted) {
-      audioRef.current.volume = opacity.get();
+      audioRef.current.volume = Math.max(0, Math.min(1, latest));
     }
   });
 

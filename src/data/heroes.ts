@@ -25,6 +25,7 @@ export interface Hero {
   image: string;
   imagePosition?: string;
   gallery?: string[];
+  galleryNote?: string;
   isClassified?: boolean;
   backstory: string;
   powerSystem: string;
@@ -41,7 +42,8 @@ export const heroes: Hero[] = [
     name: "Spectre",
     role: "Omega Clearance / World-Ender Shard",
     image: "/Moonlit_Immortal_of_Misty_Peaks.png",
-    gallery: ["/Spectre.jpg", "/Moonlit_Immortal_of_Misty_Peaks.png"],
+    gallery: ["/images/spectre_1.jpg", "/images/spectre_2.jpg", "/images/Spectre_3.jpg"],
+    galleryNote: "[CLASSIFIED ENTRY] No photographs of Spectre exist. All optical recording devices mysteriously fail in his presence. Only artistic renditions and eyewitness composite sketches are available in the archives.",
     backstory: "Eons ago, the late guardian god of Earth, GAIA, formed a desperate pact with a supreme, immortal entity—a pragmatic and utterly ruthless emperor of the cosmos who seeks only absolute eternity and benefit. To fulfill a transactional vow, this emperor left behind a single \"shard\" of his existence on Earth before departing the universe. Kept in a sealed, top-secret subterranean vault known only to the 0.01% of global authorities, Spectre remains in a perpetual trance. He possesses no memory of his main body’s grand conquests and feels no human emotion. He is the ultimate failsafe, only to be awakened when a cosmic invasion or world-ending anomaly occurs.",
     powerSystem: "Cosmic Severance. Spectre does not manipulate elements; he manipulates the fundamental laws of reality.",
     skills: [
@@ -73,12 +75,12 @@ export const heroes: Hero[] = [
     ]
   },
   {
-    id: "dream-princess",
+    id: "nymeria",
     name: "Nymeria",
     role: "S-Class / Chaos Sorceress",
     image: "/dream_princess_v2.jpg",
     imagePosition: "top",
-    gallery: ["/dream_princess_crimson.jpg", "/dream_princess_v2.jpg"],
+    gallery: ["/images/nymeria.png"],
     backstory: "Born in a forgotten era, this young woman nearly fell victim to the brutal customs of her time. In her final moments of despair, her latent magical potential erupted, binding her to the fundamental forces of chaotic magic. Encased in a mystical hibernation, she awakened in the modern era. Now navigating a chaotic world with the eternal appearance of a woman in her 20s, she wields ancient, reality-bending crimson magic.",
     powerSystem: "Chaos Resonance. Her abilities are rooted in ancient chaotic energy, allowing her to manipulate reality, heal the wounded, and summon devastating crimson constructs.",
     skills: [
@@ -137,7 +139,7 @@ export const heroes: Hero[] = [
     name: "Android",
     role: "B-Class / Remote Sentinel",
     image: "/android.png",
-    gallery: ["/android.png"],
+    gallery: ["/images/android_1.jpg", "/images/android_2.png"],
     backstory: "A reclusive, brilliant tech-savvy geek who rarely leaves her heavily fortified server room. Tinkering with advanced localized neural networks and high-performance processing units, she built a highly advanced humanoid robot purely for fun and to run errands outside. When her robot inadvertently interrupted a bank robbery and systematically dismantled the criminals using predictive combat algorithms, she realized she could make a difference. She now fights crime from the comfort of her ergonomic chair.",
     powerSystem: "Algorithmic Dominance. Bypassing biological limitations through raw computing power, distributed data networks, and mechanical force.",
     skills: [

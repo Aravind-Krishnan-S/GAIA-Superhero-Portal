@@ -117,9 +117,6 @@ export default function ContactPage() {
 
   const handleMenuSelect = (option: string) => {
     if (option === "DISTRESS") {
-      if (typeof window !== 'undefined') {
-        window.dispatchEvent(new CustomEvent('play-alert'));
-      }
       setMode("DISTRESS_NAME");
       setMessages([{ id: Date.now().toString(), text: "DISTRESS PROTOCOL INITIATED. STATE YOUR FULL NAME.", sender: "bot" }]);
     } else {

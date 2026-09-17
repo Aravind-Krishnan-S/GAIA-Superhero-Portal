@@ -26,7 +26,7 @@ export default function HeroesGrid() {
                   ? "border-[#E50914]/30 hover:border-[#E50914] hover:shadow-[0_0_30px_rgba(229, 9, 20,0.3)]" 
                   : "border-[#E50914]/30 hover:border-[#E50914] hover:shadow-[0_0_30px_rgba(229,9,20,0.3)]"
               }`}
-              data-hover={hero.isClassified ? "[RESTRICTED ACCESS]" : `[ACCESS DOSSIER: ${hero.id}]`}
+              data-hover={hero.isClassified ? "[RESTRICTED ACCESS]" : `[${hero.name}]`}
             >
               {/* Target Acquisition Brackets (Top Left, Top Right, Bottom Left, Bottom Right) */}
               <div className={`absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 transition-all duration-300 transform -translate-x-4 -translate-y-4 opacity-0 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100 z-20 ${hero.isClassified ? "border-[#E50914]" : "border-[#E50914]"}`}></div>
@@ -72,9 +72,6 @@ export default function HeroesGrid() {
                 hero.isClassified ? "border-[#E50914]/30 bg-[#E50914]/5 group-hover:bg-[#E50914]/10" : "border-[#E50914]/30 bg-[#E50914]/5 group-hover:bg-[#E50914]/10"
               }`}>
                 <div>
-                  <div className="text-[10px] text-[#F8F9FA] tracking-widest mb-1">
-                    ID: {hero.id} // SEC-LEVEL: {hero.isClassified ? "OMEGA" : "ALPHA"}
-                  </div>
                   <h3 className={`text-lg font-bold uppercase tracking-widest drop-shadow-[0_0_8px_rgba(229,9,20,0.5)] ${
                     hero.isClassified ? "text-[#E50914] drop-shadow-[0_0_8px_rgba(229, 9, 20,0.5)]" : "text-[#E50914]"
                   }`}>

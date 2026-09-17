@@ -65,31 +65,38 @@ export default function StarWarsCrawl() {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [contentHeight, setContentHeight] = useState(0);
   const isInteracting = useRef(false);
+  const wheelTimeout = useRef<NodeJS.Timeout>();
   const [startPos, setStartPos] = useState(0);
 
   useEffect(() => {
     if (containerRef.current) {
       setContentHeight(containerRef.current.offsetHeight / 2);
     }
-    const initialPos = window.innerHeight * 0.8;
+    const initialPos = window.innerHeight * 0.4;
     setStartPos(initialPos);
     y.set(initialPos);
   }, [y]);
 
-  // Handle scroll isolation
   useEffect(() => {
-    const el = wrapperRef.current;
+    const el = containerRef.current;
     if (!el) return;
 
     const handleNativeWheel = (e: WheelEvent) => {
-      e.preventDefault();
-      if (!contentHeight) return;
+      e.preventDefault(); // Stop the main page from scrolling
+      isInteracting.current = true;
       y.set(y.get() - e.deltaY);
+      
+      clearTimeout(wheelTimeout.current);
+      wheelTimeout.current = setTimeout(() => {
+        isInteracting.current = false;
+      }, 150);
     };
 
-    el.addEventListener("wheel", handleNativeWheel, { passive: false });
-    return () => el.removeEventListener("wheel", handleNativeWheel);
-  }, [contentHeight, y]);
+    el.addEventListener('wheel', handleNativeWheel, { passive: false });
+    return () => {
+      el.removeEventListener('wheel', handleNativeWheel);
+    };
+  }, [y]);
 
   // Handle seamless wrapping on any change to y
   useMotionValueEvent(y, "change", (latest) => {

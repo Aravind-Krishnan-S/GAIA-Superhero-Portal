@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents, useMap } from "react-leaflet";
 import L from "leaflet";
 import 'leaflet/dist/leaflet.css';
+import POIOverlay from "./POIOverlay";
 
 // Fix Leaflet icon issue in Next.js
 const blueIcon = L.divIcon({
@@ -43,7 +44,10 @@ export default function MapComponent({
   onMapClick, 
   beacon,
   incidents,
-  center
+  center,
+  theme = "dark",
+  beaconPopup,
+  showPOIs = true
 }: { 
   onMapClick?: (latlng: {lat: number, lng: number}) => void,
   beacon?: {lat: number, lng: number} | null,
@@ -56,7 +60,10 @@ export default function MapComponent({
     severity: string;
     timestamp: string;
   }[],
-  center?: {lat: number, lng: number} | null
+  center?: {lat: number, lng: number} | null,
+  theme?: "dark" | "light",
+  beaconPopup?: React.ReactNode,
+  showPOIs?: boolean
 }) {
   
   // Clean up leaflet container if re-mounted (strict mode fix)
@@ -75,17 +82,21 @@ export default function MapComponent({
       <MapContainer 
         center={[20, 0]} 
         zoom={3} 
-        style={{ height: '100%', width: '100%', background: '#020617' }} // changed background to a dark blue slate
+        style={{ height: '100%', width: '100%', background: theme === "dark" ? '#020617' : '#f8f9fa' }}
         zoomControl={false}
       >
-        <style>{`
-          .leaflet-tile-pane {
-            filter: sepia(100%) hue-rotate(185deg) saturate(300%) brightness(60%) contrast(120%);
-          }
-        `}</style>
+        {theme === "dark" && (
+          <style>{`
+            .leaflet-tile-pane {
+              filter: sepia(100%) hue-rotate(185deg) saturate(300%) brightness(60%) contrast(120%);
+            }
+          `}</style>
+        )}
         <TileLayer
-          url="https://api.maptiler.com/maps/basic-v2-dark/256/{z}/{x}/{y}.png?key=iCsRDdpVnVkGpLEJ7tSR"
-          attribution='&copy; <a href="https://www.maptiler.com/">MapTiler</a> &copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url={theme === "dark" 
+            ? "https://api.maptiler.com/maps/basic-v2-dark/256/{z}/{x}/{y}.png?key=iCsRDdpVnVkGpLEJ7tSR"
+            : "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
         <ClickHandler onMapClick={onMapClick} />
         <MapUpdater center={center} />
@@ -111,14 +122,19 @@ export default function MapComponent({
         {/* Temporary Pin for New Report */}
         {beacon && (
           <Marker position={[beacon.lat, beacon.lng]} icon={blueIcon}>
-            <Popup>
-              <div className="bg-slate-900 border border-amber-500 p-2 rounded-sm text-[#F8F9FA] font-mono font-bold tracking-widest text-center shadow-[0_0_15px_rgba(245,158,11,0.2)]">
-                DISTRESS BEACON <br/>
-                <span className="text-amber-500 animate-pulse text-xs">STATUS: LOCATION PINNED</span>
-              </div>
+            <Popup className="custom-popup-wrapper" closeButton={false} autoPan={false}>
+              {beaconPopup || (
+                <div className="bg-slate-900 border border-amber-500 p-2 rounded-sm text-[#F8F9FA] font-mono font-bold tracking-widest text-center shadow-[0_0_15px_rgba(245,158,11,0.2)]">
+                  DISTRESS BEACON <br/>
+                  <span className="text-amber-500 animate-pulse text-xs">STATUS: LOCATION PINNED</span>
+                </div>
+              )}
             </Popup>
           </Marker>
         )}
+        
+        {/* Dynamic Strategic POIs */}
+        <POIOverlay showPOIs={showPOIs} />
       </MapContainer>
     </div>
   );
