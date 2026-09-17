@@ -132,9 +132,8 @@ export default function HeroesGrid() {
                   <h3 className={`text-2xl lg:text-3xl font-black uppercase tracking-[0.2em] mb-2 ${theme.text}`} style={{ textShadow: `0 0 15px ${theme.color}` }}>
                     {hero.name}
                   </h3>
-                  <div className="flex items-center gap-2">
-                    <span className="text-[#F8F9FA]/60 text-xs tracking-[0.2em]">RANK:</span>
-                    <span className={`text-sm font-bold tracking-widest ${theme.text} bg-black/50 px-3 py-1 border border-current rounded-sm`}>
+                  <div className="flex items-center gap-2 mt-4">
+                    <span className={`text-2xl lg:text-3xl font-black tracking-widest ${theme.text} drop-shadow-md`} style={{ fontFamily: 'var(--font-cinzel), serif' }}>
                       {hero.rank}
                     </span>
                   </div>
