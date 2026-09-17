@@ -22,6 +22,9 @@ export default function DossierTheatre({ hero, onClose }: DossierTheatreProps) {
   const [skillsOpen, setSkillsOpen] = useState(false);
   const [achievementsOpen, setAchievementsOpen] = useState(false);
   const [galleryOpen, setGalleryOpen] = useState(false);
+  
+  // Gallery full screen modal state
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -34,6 +37,7 @@ export default function DossierTheatre({ hero, onClose }: DossierTheatreProps) {
       setSkillsOpen(false); // reset on hero change
       setAchievementsOpen(false);
       setGalleryOpen(false);
+      setSelectedImage(null);
     } else {
       setActiveHero(null);
       document.body.style.overflow = 'unset';
@@ -296,7 +300,7 @@ export default function DossierTheatre({ hero, onClose }: DossierTheatreProps) {
                               {activeHero.gallery && activeHero.gallery.length > 0 ? (
                                 <div className="flex flex-col gap-4 max-h-[400px] overflow-y-auto custom-scrollbar pr-2">
                                   {activeHero.gallery.map((imgSrc, idx) => (
-                                    <div key={idx} className="relative w-full aspect-square md:aspect-video border border-[#E50914]/30 overflow-hidden hover:border-[#E50914] transition-colors group shrink-0">
+                                    <div key={idx} onClick={() => setSelectedImage(imgSrc)} className="relative w-full aspect-square md:aspect-video border border-[#E50914]/30 overflow-hidden hover:border-[#E50914] transition-colors group shrink-0 cursor-pointer">
                                      <Image 
                                        src={imgSrc} 
                                        alt={`${activeHero.name} gallery image ${idx + 1}`}
@@ -361,6 +365,27 @@ export default function DossierTheatre({ hero, onClose }: DossierTheatreProps) {
             </div>
             
           </SciFiPanel>
+        </div>
+      )}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-[#050505]/95 backdrop-blur-xl"
+          onClick={() => setSelectedImage(null)}
+        >
+          <button 
+            onClick={() => setSelectedImage(null)}
+            className="absolute top-4 right-6 z-50 p-2 border border-[#E50914]/50 bg-[#050505] hover:bg-[#E50914] hover:text-[#050505] text-[#E50914] transition-colors"
+          >
+            <X size={20} />
+          </button>
+          <div className="relative w-full h-full max-w-5xl max-h-[90vh]">
+            <Image 
+              src={selectedImage} 
+              alt="Gallery preview"
+              fill
+              className="object-contain"
+            />
+          </div>
         </div>
       )}
     </AnimatePresence>,
