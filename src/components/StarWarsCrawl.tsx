@@ -65,7 +65,7 @@ export default function StarWarsCrawl() {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [contentHeight, setContentHeight] = useState(0);
   const isInteracting = useRef(false);
-  const wheelTimeout = useRef<NodeJS.Timeout>();
+  const wheelTimeout = useRef<NodeJS.Timeout | null>(null);
   const [startPos, setStartPos] = useState(0);
 
   useEffect(() => {
@@ -86,7 +86,9 @@ export default function StarWarsCrawl() {
       isInteracting.current = true;
       y.set(y.get() - e.deltaY);
       
-      clearTimeout(wheelTimeout.current);
+      if (wheelTimeout.current) {
+        clearTimeout(wheelTimeout.current);
+      }
       wheelTimeout.current = setTimeout(() => {
         isInteracting.current = false;
       }, 150);
