@@ -136,16 +136,11 @@ export default function DossierTheatre({ hero, onClose }: DossierTheatreProps) {
               
               <div className="absolute bottom-0 left-0 right-0 p-6 z-10 bg-gradient-to-t from-[#050505] via-[#050505]/90 to-transparent pointer-events-none">
                 <div className="border-b border-[#E50914]/30 pb-4 mb-4">
-                  <div className="text-[10px] text-[#E50914] tracking-widest mb-1">OPERATIVE ID: {activeHero.id}</div>
                   <h2 className={`text-4xl md:text-5xl font-bold uppercase tracking-widest drop-shadow-[0_0_10px_rgba(229,9,20,0.5)] ${activeHero.isClassified ? "text-[#E50914]" : "text-[#F8F9FA]"}`}>
                     {activeHero.isClassified ? '[REDACTED]' : activeHero.name}
                   </h2>
                 </div>
-                <div className="flex justify-between items-end">
-                  <div>
-                    <div className="text-[10px] text-[#F8F9FA] tracking-widest uppercase mb-1">THREAT LEVEL</div>
-                    <div className="text-sm font-bold text-[#E50914] tracking-wider">{activeHero.threatLevel}</div>
-                  </div>
+                <div className="flex justify-end items-end">
                   <div className="text-right">
                     <div 
                       style={{ fontFamily: 'var(--font-cinzel), serif' }}
