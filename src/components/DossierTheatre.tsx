@@ -6,7 +6,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from "recharts";
 import { Hero, heroes } from "@/data/heroes";
-import { X, ShieldAlert, Terminal, Activity, ChevronDown, ChevronUp, Trophy, Zap, TriangleAlert, Image as ImageIcon } from "lucide-react";
+import { X, ShieldAlert, Terminal, Activity, ChevronDown, ChevronUp, Trophy, Zap, TriangleAlert, Image as ImageIcon, ChevronLeft, ChevronRight } from "lucide-react";
 import SciFiPanel from "./SciFiPanel";
 
 interface DossierTheatreProps {
@@ -298,9 +298,9 @@ export default function DossierTheatre({ hero, onClose }: DossierTheatreProps) {
                                </div>
                              )}
                               {activeHero.gallery && activeHero.gallery.length > 0 ? (
-                                <div className="flex flex-col gap-4 max-h-[400px] overflow-y-auto custom-scrollbar pr-2">
+                                <div className="grid grid-cols-2 gap-4 max-h-[400px] overflow-y-auto custom-scrollbar pr-2">
                                   {activeHero.gallery.map((imgSrc, idx) => (
-                                    <div key={idx} onClick={() => setSelectedImage(imgSrc)} className="relative w-full aspect-square md:aspect-video border border-[#E50914]/30 overflow-hidden hover:border-[#E50914] transition-colors group shrink-0 cursor-pointer">
+                                    <div key={idx} onClick={() => setSelectedImage(imgSrc)} className="relative w-full aspect-square border border-[#E50914]/30 overflow-hidden hover:border-[#E50914] transition-colors group shrink-0 cursor-pointer">
                                      <Image 
                                        src={imgSrc} 
                                        alt={`${activeHero.name} gallery image ${idx + 1}`}
@@ -378,12 +378,40 @@ export default function DossierTheatre({ hero, onClose }: DossierTheatreProps) {
           >
             <X size={20} />
           </button>
-          <div className="relative w-full h-full max-w-5xl max-h-[90vh]">
+
+          {activeHero?.gallery && (() => {
+            const currentIndex = activeHero.gallery.indexOf(selectedImage);
+            const hasPrev = currentIndex > 0;
+            const hasNext = currentIndex !== -1 && currentIndex < activeHero.gallery.length - 1;
+            
+            return (
+              <>
+                {hasPrev && (
+                  <button 
+                    onClick={(e) => { e.stopPropagation(); setSelectedImage(activeHero.gallery![currentIndex - 1]); }} 
+                    className="absolute left-4 md:left-12 z-50 p-2 border border-[#E50914]/50 bg-[#050505] hover:bg-[#E50914] hover:text-[#050505] text-[#E50914] transition-colors"
+                  >
+                    <ChevronLeft size={32} />
+                  </button>
+                )}
+                {hasNext && (
+                  <button 
+                    onClick={(e) => { e.stopPropagation(); setSelectedImage(activeHero.gallery![currentIndex + 1]); }} 
+                    className="absolute right-4 md:right-12 z-50 p-2 border border-[#E50914]/50 bg-[#050505] hover:bg-[#E50914] hover:text-[#050505] text-[#E50914] transition-colors"
+                  >
+                    <ChevronRight size={32} />
+                  </button>
+                )}
+              </>
+            );
+          })()}
+
+          <div className="relative w-full h-full max-w-5xl max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
             <Image 
               src={selectedImage} 
               alt="Gallery preview"
               fill
-              className="object-contain"
+              className="object-contain pointer-events-none"
             />
           </div>
         </div>
