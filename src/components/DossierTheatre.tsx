@@ -150,7 +150,7 @@ export default function DossierTheatre({ hero, onClose }: DossierTheatreProps) {
                       style={{ fontFamily: 'var(--font-cinzel), serif' }}
                       className={`text-4xl font-bold ${
                         activeHero.rank === 'EX-Rank' ? 'text-transparent bg-clip-text bg-gradient-to-br from-[#E50914] via-white to-black drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]' :
-                        activeHero.rank === 'S-Rank' ? 'text-yellow-500 drop-shadow-[0_0_15px_rgba(234,179,8,1)]' :
+                        activeHero.rank === 'S-Rank' ? 'text-transparent bg-clip-text bg-gradient-to-r from-[#E50914] via-orange-500 to-yellow-400 drop-shadow-[0_0_15px_rgba(234,179,8,0.8)]' :
                         activeHero.rank === 'A-Rank' ? 'text-purple-600 drop-shadow-[0_0_10px_rgba(147,51,234,0.8)]' :
                         activeHero.rank === 'B-Rank' ? 'text-green-500 drop-shadow-[0_0_10px_rgba(34,197,94,0.8)]' :
                         'text-[#E50914] drop-shadow-[0_0_8px_rgba(229,9,20,0.5)]'

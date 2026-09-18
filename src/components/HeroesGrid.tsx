@@ -11,7 +11,7 @@ const getRankStyle = (rank: string) => {
     case 'EX-Rank':
       return 'text-transparent bg-clip-text bg-gradient-to-br from-[#E50914] via-white to-black drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]';
     case 'S-Rank':
-      return 'text-yellow-500 drop-shadow-[0_0_15px_rgba(234,179,8,1)]';
+      return 'text-transparent bg-clip-text bg-gradient-to-r from-[#E50914] via-orange-500 to-yellow-400 drop-shadow-[0_0_15px_rgba(234,179,8,0.8)]';
     case 'A-Rank':
       return 'text-purple-600 drop-shadow-[0_0_10px_rgba(147,51,234,0.8)]';
     case 'B-Rank':
