@@ -6,6 +6,21 @@ import { heroes, Hero } from "@/data/heroes";
 import DossierTheatre from "./DossierTheatre";
 import { ShieldAlert } from "lucide-react";
 
+const getRankStyle = (rank: string) => {
+  switch (rank) {
+    case 'EX-Rank':
+      return 'text-transparent bg-clip-text bg-gradient-to-br from-[#E50914] via-white to-black drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]';
+    case 'S-Rank':
+      return 'text-yellow-500 drop-shadow-[0_0_15px_rgba(234,179,8,1)]';
+    case 'A-Rank':
+      return 'text-purple-600 drop-shadow-[0_0_10px_rgba(147,51,234,0.8)]';
+    case 'B-Rank':
+      return 'text-green-500 drop-shadow-[0_0_10px_rgba(34,197,94,0.8)]';
+    default:
+      return 'text-white';
+  }
+};
+
 const getHeroTheme = (id: string) => {
   switch (id) {
     case 'spectre': 
@@ -133,7 +148,7 @@ export default function HeroesGrid() {
                     {hero.name}
                   </h3>
                   <div className="flex items-center gap-2 mt-4">
-                    <span className={`text-2xl lg:text-3xl font-black tracking-widest ${theme.text} drop-shadow-md`} style={{ fontFamily: 'var(--font-cinzel), serif' }}>
+                    <span className={`text-2xl lg:text-3xl font-black tracking-widest ${getRankStyle(hero.rank)}`} style={{ fontFamily: 'var(--font-cinzel), serif' }}>
                       {hero.rank}
                     </span>
                   </div>
