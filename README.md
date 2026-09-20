@@ -37,8 +37,8 @@ This project was meticulously designed to meet and exceed the evaluation criteri
 - **EmailJS Integration:** The portal uses `@emailjs/browser` to instantly and automatically send a formatted notification email directly to the developer, requiring no backend mail server setup.
 
 ### 5. Creativity & Innovation
-- **3D Graphics:** Integrated `@react-three/fiber` and `three.js` to render an endless, neon-lit 3D Cyberpunk Cityscape background on the main dashboard.
-- **Global Audio:** Implemented immersive, persistent background music (Imperial March) and UI sound effects (typing sounds, hover clicks) that can be globally muted via the navigation bar.
+- **3D Graphics:** Integrated `@react-three/fiber` and `three.js` to render an endless, neon-lit 3D Cyberpunk Cityscape background on the main dashboard. And added a 3D model as the Chatbot Avatar.
+- **Global Audio:** Implemented immersive, persistent background music (Imperial March) and Custom Sci-Fi UI sound effects (typing sounds, hover clicks, etc...) that can be globally muted via the navigation bar.
 - **Custom Animations:** Utilized `framer-motion` for a cinematic boot sequence, smooth page transitions, stagger effects, and interactive UI states.
 
 ---
