@@ -2,9 +2,9 @@
 
 ![G.A.I.A. Portal UI](https://img.shields.io/badge/Status-Active-brightgreen) ![Next.js](https://img.shields.io/badge/Next.js-14-black) ![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue) ![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-E50914)
 
-**Developer:** [Your Name]
+**Developer:** Aravind Krishnan S
 **Date:** September 2026
-**Live Demo:** [Insert Public URL Here]
+**Live Demo:** https://gaia-superhero-portal.vercel.app/
 
 ## 📌 Executive Summary
 
