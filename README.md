@@ -10,7 +10,7 @@
 
 The **G.A.I.A. (Global Anomaly Investigation Agency) Superhero Portal** is an interactive, high-tech web application designed to fulfill the requirements of the TECHASCENT Machine Test. 
 
-It serves as the digital front for an **original superhero entity**, allowing citizens (specifically targeted towards students of Jyothi College of Engineering, as per the brief) to request help and report anomalies globally. The project focuses heavily on an immersive user experience, responsive design, and seamless functional integration.
+It serves as the digital front for an **original superhero entity**, allowing citizens to request help and report anomalies globally. The project focuses heavily on an immersive user experience, responsive design, and seamless functional integration.
 
 ---
 
